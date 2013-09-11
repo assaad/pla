@@ -7,6 +7,6 @@ package lu.snt.serval.pla.framework;
  * Time: 11:58
  * To change this template use File | Settings | File Templates.
  */
-public class QueryBody {
+public abstract class QueryBody {
 
 }

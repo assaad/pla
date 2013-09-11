@@ -13,41 +13,41 @@ import java.util.Collection;
 
 
 public class Query implements Serializable {
-        private QueryBody querybody;
-        //private boolean initiatorIsConsole;
+    private QueryBody querybody;
+    //private boolean initiatorIsConsole;
 
 
-        private String nameowner;  //the component that created this query
-        private String namedestination;
-        private int processId;     // like the port processing the query in the Owner
+    private String nameowner;  //the component that created this query
+    private String namedestination;
+    private int processId;     // like the port processing the query in the Owner
 
 
-        public Query(String owner, boolean initiatorIsConsole, String destination, QueryBody querybody,  Collection history) {
-            this.nameowner = owner;
+    public Query(String owner, boolean initiatorIsConsole, String destination, QueryBody querybody, Collection history) {
+        this.nameowner = owner;
 
-            this.namedestination = destination;
-            this.querybody = querybody;
-        }
+        this.namedestination = destination;
+        this.querybody = querybody;
+    }
 
 
-        public String getOwner() {
-            return nameowner;
-        }
+    public String getOwner() {
+        return nameowner;
+    }
 
-        public String getDestinator() {
-            return namedestination;
-        }
+    public String getDestinator() {
+        return namedestination;
+    }
 
-    public void setProcessId( int processId) {
+    public void setProcessId(int processId) {
         this.processId = processId;
     }
 
-        public int getProcessId() {
-            return processId;
-        }
+    public int getProcessId() {
+        return processId;
+    }
 
-        public QueryBody getQuerybody() {
-            return (this.querybody);
-        }
+    public QueryBody getQuerybody() {
+        return (this.querybody);
+    }
 
 }

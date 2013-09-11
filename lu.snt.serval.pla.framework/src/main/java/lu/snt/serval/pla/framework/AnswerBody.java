@@ -7,5 +7,5 @@ package lu.snt.serval.pla.framework;
  * Time: 09:51
  * To change this template use File | Settings | File Templates.
  */
-public class AnswerBody {
+public abstract class AnswerBody {
 }

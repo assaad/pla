@@ -10,19 +10,17 @@ package lu.snt.serval.pla.framework;
 public class Answer {
     private Query query;
     private AnswerBody answerBody;
-    public Answer (Query query, AnswerBody answerBody)
-    {
+
+    public Answer(Query query, AnswerBody answerBody) {
         this.answerBody = answerBody;
-        this.query  = query;
+        this.query = query;
     }
 
-    public Query getQuery()
-    {
+    public Query getQuery() {
         return query;
     }
 
-    public AnswerBody getAnswerBody()
-    {
-        return  answerBody;
+    public AnswerBody getAnswerBody() {
+        return answerBody;
     }
 }
