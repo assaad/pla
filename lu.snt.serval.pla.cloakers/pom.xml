@@ -10,7 +10,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lu.snt.serval.pla.anonymizer</artifactId>
+    <artifactId>lu.snt.serval.pla.cloakers</artifactId>
+    <name>Serval :: PLA :: Cloakers</name>
 
 
 </project>

@@ -9,7 +9,8 @@
         <relativePath>../lu.snt.serval.pla.root/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <name>Serval :: PLS :: User Profile</name>
 
-    <artifactId>lu.snt.serval.pla.userprofile</artifactId>
+    <artifactId>lu.snt.serval.pla.client</artifactId>
+    <name>Serval :: PLA :: Client</name>
+
 </project>

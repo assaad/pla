@@ -10,8 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lu.snt.serval.pla.cloackers</artifactId>
-    <name>Serval :: PLA :: Cloackers</name>
-
+    <artifactId>lu.snt.serval.pla.privacyawarecomp</artifactId>
+    <name>Serval :: PLA :: PrivacyAwareComp</name>
 
 </project>
