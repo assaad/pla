@@ -7,20 +7,16 @@
  */
 package lu.snt.serval.pla.client;
 
-
-import org.kevoree.ContainerRoot;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
-import org.kevoree.framework.service.handler.ModelListenerAdapter;
 
 
 @Provides({
 
-        @ProvidedPort(name = "ResponseIn", type = PortType.MESSAGE),
+        @ProvidedPort(name = "ResponseIn", type = PortType.MESSAGE)
 })
 
 @Requires({
-        @RequiredPort(name = "QueryOut", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "QueryOut", type = PortType.MESSAGE, optional = true)
 })
 
 
