@@ -35,7 +35,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <ecore>metamodel/plaModel.ecore</ecore>
+                            <ecore>metamodel/plaModel2.ecore</ecore>
                             <clearOutput>false</clearOutput>
                             <packagePrefix>lu.snt.serval</packagePrefix>
                         </configuration>
