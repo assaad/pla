@@ -7,8 +7,17 @@
  */
 package lu.snt.serval.pla.client;
 
-import org.kevoree.annotation.*;
+import lu.snt.serval.kmf.loader.JSONModelLoader;
+import lu.snt.serval.kmf.serializer.JSONModelSerializer;
+import lu.snt.serval.pla.model.ModelFactory;
+import lu.snt.serval.pla.model.Query;
+import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.Socket;
+
+/*
 
 @Provides({
 
@@ -20,46 +29,72 @@ import org.kevoree.annotation.*;
 })
 
 
-/*
 @DictionaryType({
         @DictionaryAttribute(name = "Name", optional = false),
         @DictionaryAttribute(name = "InitialKnowledgeBaseFile", optional = true),
         @DictionaryAttribute(name = "InitialTrustFile", optional = true),
 
 })
-*/
+
 
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
+*/
 public class Client extends org.kevoree.framework.AbstractComponentType {
 
     //Starting
     public Client() {
 
-      FrameworkFactory factory = new DefaultFrameworkFactory();
-    }
-
-    @Port(name = "ResponseIn")
-    public void incomingResponse(Object o) {
-    }
-
-
-    @Start
-    public void start() {
+           ModelFactory factory = new DefaultModelFactory();
 
     }
+    public Query sendQuery(Query queryToSend) {
 
-    @Stop
-    public void stop() {
+        Query answer = null;
+        Socket socket = null;
+        try{
 
-    }
+            System.out.println("Client connecting");
+            socket = new Socket("localhost", 9000);
+            InputStream socketInput = socket.getInputStream();
+            OutputStream socketOutput = socket.getOutputStream();
+            JSONModelSerializer serializer = new JSONModelSerializer();
+            JSONModelLoader loader = new JSONModelLoader();
 
-    @Update
-    public void update() {
-        stop();
-        start();
+            System.out.println("Client sending query");
+            String request = serializer.serialize(queryToSend);
+            PrintWriter pr = new PrintWriter(new OutputStreamWriter(socketOutput));
+            pr.println(request);
+            pr.println("<END_OF_REQUEST/>");
+            pr.flush();
+            System.out.println("Client waiting answer");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socketInput));
+            StringBuilder requestString = new StringBuilder();
+            String line = reader.readLine();
+            do{
+                requestString.append(line);
+                line = reader.readLine();
+            } while (line != null);
+
+            answer = (Query) loader.loadModelFromString(requestString.toString()).get(0);
+
+            System.out.println("Client received answer:");
+            System.out.println(serializer.serialize(answer));
+
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }finally{
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+        return answer;
+
     }
 
 
