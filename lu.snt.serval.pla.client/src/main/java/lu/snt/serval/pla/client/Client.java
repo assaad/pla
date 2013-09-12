@@ -42,7 +42,7 @@ public class Client extends org.kevoree.framework.AbstractComponentType {
     //Starting
     public Client() {
 
-
+      FrameworkFactory factory = new DefaultFrameworkFactory();
     }
 
     @Port(name = "ResponseIn")

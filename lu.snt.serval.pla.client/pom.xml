@@ -13,4 +13,13 @@
     <artifactId>lu.snt.serval.pla.client</artifactId>
     <name>Serval :: PLA :: Client</name>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>lu.snt.serval.pla</groupId>
+            <artifactId>lu.snt.serval.pla.metamodels</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
