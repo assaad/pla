@@ -3,49 +3,51 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pla"
     nsURI="http://plamodel/1.0" nsPrefix="pla">
-  <eSubpackages name="framework" nsURI="" nsPrefix="framework">
+  <eSubpackages name="model" nsPrefix="model">
     <eClassifiers xsi:type="ecore:EClass" name="Query">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" eType="#//framework/UserProfile"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" eType="#//model/UserProfile"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="queryRequests" upperBound="-1"
-          eType="#//framework/QueryRequest" containment="true"/>
+          eType="#//model/QueryRequest" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="answers" upperBound="-1"
-          eType="#//framework/Answer" containment="true"/>
+          eType="#//model/Answer" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryRequest" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="Answer" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="queryRequest" lowerBound="1"
-          eType="#//framework/QueryRequest"/>
+          eType="#//model/QueryRequest"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserProfile">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           iD="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryDataType" eSuperTypes="#//framework/QueryRequest #//framework/DataType">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="queriedDataType" lowerBound="1"
-          eType="#//framework/DataType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="QueryDataType" eSuperTypes="#//model/QueryRequest #//model/DataType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
+          eType="#//model/DataType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requestedTimeBluring"
-          eType="#//framework/TimeBluring"/>
+          eType="#//model/TimeBluring"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requestedValueBluring"
-          eType="#//framework/ValueBluring"/>
+          eType="#//model/ValueBluring"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="#//model/DataType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryPrivacyProfile" eSuperTypes="#//framework/QueryRequest">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" eType="#//framework/UserProfile"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="queriedDataType" eType="#//framework/DataType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="QueryPrivacyProfile" eSuperTypes="#//model/QueryRequest">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" eType="#//model/UserProfile"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
+          eType="#//model/DataType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryCloaker" eSuperTypes="#//framework/QueryRequest">
+    <eClassifiers xsi:type="ecore:EClass" name="QueryCloaker" eSuperTypes="#//model/QueryRequest">
       <eStructuralFeatures xsi:type="ecore:EReference" name="queriedDataType" lowerBound="1"
-          eType="#//framework/QueryDataType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="privacyPr" eType="#//framework/AnswerPrivacyProfile"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRule" eType="#//framework/PrivacyACRule"/>
+          eType="#//model/QueryDataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="privacyProfile" eType="#//model/AnswerPrivacyProfile"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRule" eType="#//model/PrivacyACRule"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrivacyProfile">
       <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRules" upperBound="-1"
-          eType="#//framework/PrivacyACRule" containment="true"/>
+          eType="#//model/PrivacyACRule" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" lowerBound="1"
-          eType="#//framework/UserProfile"/>
+          eType="#//model/UserProfile"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -54,43 +56,42 @@
     <eClassifiers xsi:type="ecore:EClass" name="PrivacyACRule">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cloakingAlgorithm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
-          eType="#//framework/DataType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="timeBluring" eType="#//framework/TimeBluring"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="valueBluring" eType="#//framework/ValueBluring"/>
+          eType="#//model/DataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timeBluring" eType="#//model/TimeBluring"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueBluring" eType="#//model/ValueBluring"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Bluring" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TimeBluring" abstract="true" eSuperTypes="#//framework/Bluring">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//framework/Bluring"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TimeBluring" abstract="true" eSuperTypes="#//model/Bluring">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="" eType="#//model/Bluring"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueBluring" abstract="true" eSuperTypes="#//framework/Bluring"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AnswerDataType" abstract="true" eSuperTypes="#//framework/Answer">
+    <eClassifiers xsi:type="ecore:EClass" name="ValueBluring" abstract="true" eSuperTypes="#//model/Bluring"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AnswerDataType" abstract="true" eSuperTypes="#//model/Answer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="resultedTimeBluring"
-          eType="#//framework/TimeBluring"/>
+          eType="#//model/TimeBluring"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ResultedValueBluring"
-          eType="#//framework/ValueBluring"/>
+          eType="#//model/ValueBluring"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AnswerPrivacyProfile" eSuperTypes="#//framework/Answer #//framework/PrivacyACRule">
+    <eClassifiers xsi:type="ecore:EClass" name="AnswerPrivacyProfile" eSuperTypes="#//model/Answer #//model/PrivacyACRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedPrivacyProfile"
-          eType="#//framework/PrivacyProfile"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="relatedPrivacyRule" lowerBound="1"
-          eType="#//framework/PrivacyACRule"/>
+          eType="#//model/PrivacyProfile"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRule" eType="#//model/PrivacyACRule"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IntervalAnswer" eSuperTypes="#//framework/AnswerDataType">
+    <eClassifiers xsi:type="ecore:EClass" name="IntervalAnswer" eSuperTypes="#//model/AnswerDataType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueAnswer" eSuperTypes="#//framework/AnswerDataType">
+    <eClassifiers xsi:type="ecore:EClass" name="ValueAnswer" eSuperTypes="#//model/AnswerDataType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IntervalBluring" eSuperTypes="#//framework/ValueBluring">
+    <eClassifiers xsi:type="ecore:EClass" name="IntervalBluring" eSuperTypes="#//model/ValueBluring">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntervalLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NoiseBluring" eSuperTypes="#//framework/ValueBluring">
+    <eClassifiers xsi:type="ecore:EClass" name="NoiseBluring" eSuperTypes="#//model/ValueBluring">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="variance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TypeOfNoise" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TimeAveraging" eSuperTypes="#//framework/TimeBluring">
+    <eClassifiers xsi:type="ecore:EClass" name="TimeAveraging" eSuperTypes="#//model/TimeBluring">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
