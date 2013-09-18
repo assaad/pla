@@ -17,13 +17,14 @@
         <module>../lu.snt.serval.pla.userprofile</module>
         <module>../lu.snt.serval.pla.privacyawarecomp</module>
         <module>../lu.snt.serval.pla.cloakers</module>
+        <module>../lu.snt.serval.pla.sensors</module>
         <!--
         -->
     </modules>
 
 
     <properties>
-        <kevoree.version>2.0.10</kevoree.version>
+        <kevoree.version>2.0.11</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
