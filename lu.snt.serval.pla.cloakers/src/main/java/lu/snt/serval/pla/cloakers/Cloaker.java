@@ -15,37 +15,44 @@ import org.kevoree.framework.service.handler.ModelListenerAdapter;
 @Provides({
 
         @ProvidedPort(name = "QueryCloakerIn", type = PortType.MESSAGE),
+        @ProvidedPort(name = "DataIn", type = PortType.MESSAGE),
 })
 
 @Requires({
         @RequiredPort(name = "ResponseCloakerOut", type = PortType.MESSAGE, optional = true),
+        @RequiredPort(name = "DataOut", type = PortType.MESSAGE, optional = true),
 })
 
 
-/*
+
 @DictionaryType({
         @DictionaryAttribute(name = "Name", optional = false),
-        @DictionaryAttribute(name = "InitialKnowledgeBaseFile", optional = true),
-        @DictionaryAttribute(name = "InitialTrustFile", optional = true),
+   //     @DictionaryAttribute(name = "InitialKnowledgeBaseFile", optional = true),
+     //   @DictionaryAttribute(name = "InitialTrustFile", optional = true),
 
 })
-*/
+
 
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
 public abstract class Cloaker extends org.kevoree.framework.AbstractComponentType {
+    protected String name;
 
     //Starting
     public Cloaker() {
-
+        name = (String)   getDictionary().get("Name");
 
     }
 
     @Port(name = "QueryCloakerIn")
-    public void incomingQuery(Object o) {
-    }
+    public abstract void incomingQuery(Object o) ;
+
+
+    @Port(name = "DataIn")
+    public abstract void incomingData(Object o) ;
+
 
 
     @Start

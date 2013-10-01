@@ -8,7 +8,6 @@ package lu.snt.serval.pla.sensors;
  * To change this template use File | Settings | File Templates.
  */
 
-import lu.snt.serval.pla.model.TempRecord;
 import org.kevoree.framework.MessagePort;
 
 import java.util.Hashtable;
@@ -32,13 +31,14 @@ import java.util.Hashtable;
 })
 
 
+/*
 @DictionaryType({
-        @DictionaryAttribute(name = "StepInMin",defaultValue = "5", optional = true),
-        @DictionaryAttribute(name = "PeriodInMs",defaultValue = "2000", optional = true),
-        @DictionaryAttribute(name = "Location", defaultValue = "Room1", optional = true),
+        @DictionaryAttribute(name = "Name", optional = false),
+        @DictionaryAttribute(name = "InitialKnowledgeBaseFile", optional = true),
+        @DictionaryAttribute(name = "InitialTrustFile", optional = true),
 
 })
-
+*/
 
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
@@ -49,6 +49,8 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
 
     //Starting
     public TempSensor() {
+        //tempGenerator.run();
+
 
     }
 
@@ -70,34 +72,7 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
     @Start
     public void start() {
 
-        TempProvider t = TempGenerator.getInstance();
-        int step;
-        long period;
-        int day;
-        String location="";
-
-        try
-        {
-            step = Integer.parseInt((String) getDictionary().get("StepInMin"));
-            period = Long.parseLong((String) getDictionary().get("PeriodInMs"));
-            day = Integer.parseInt((String) getDictionary().get("StartDay"));
-            location = (String)   getDictionary().get("Location");
-        }
-        catch  (Exception ex)
-        {
-                System.out.println(ex.getMessage());
-            step=70;
-            period=2000;
-            day=5;
-            location="Room1";
-        }
-        TempGenerator.setSTEP(step);
-        t.registerTempListener(this);
-        t.setSensingPeriod(period);
-        t.setLocation(location);
-        t.setTime(day);
-
-
+        TempGenerator.getInstance().registerTempListener(this);
 
        // tempGenerator.run();
     }

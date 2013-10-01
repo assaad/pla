@@ -5,10 +5,8 @@ package lu.snt.serval.pla.sensors;/*
 * All rights reserved
 */
 
-
-import lu.snt.serval.pla.model.TempRecord;
-
-public interface TempListener {
-    void temperatureUpdated(TempRecord record);
-
+public interface TempProvider {
+    void setSensingPeriod(long periodInMillis);
+    void registerTempListener(TempListener listener);
+    void unregisterTempListener(TempListener listener);
 }

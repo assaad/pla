@@ -10,12 +10,7 @@ package lu.snt.serval.pla.sensors;/*
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-import lu.snt.serval.pla.model.TempRecord;
-import lu.snt.serval.pla.model.impl.DefaultModelFactory;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -37,7 +32,7 @@ public class TempGenerator implements TempProvider, Runnable {
     /**
      * Step, in minutes, between to generations (how far forward in the day the next generation will concern)
      */
-    private static int STEP = 5;
+    private static int STEP = 70;
 
     /**
      * Singleton
@@ -49,8 +44,6 @@ public class TempGenerator implements TempProvider, Runnable {
      */
     private List<TempListener> listeners = new ArrayList<TempListener>();
 
-
-
     /**
      * Thread executor
      */
@@ -60,30 +53,13 @@ public class TempGenerator implements TempProvider, Runnable {
      * Sleeping period of the threads (delay between two generations)
      */
     private long period = 2000;
-    private Date initDate;
-    private String location;
-
-
     private int currentDay= 0, currentMinutes = 0;
 
     private TempGenerator() {
         /**
          * Starts the generation as soon as the instance is constructed
          */
-        initDate=new Date();
 
-
-    }
-
-
-    public void setTime (int startingDate)
-    {
-        initDate.setTime(initDate.getTime()-startingDate*24*60*60*1000);
-    }
-
-    public void setLocation(String location)
-    {
-        this.location=location;
     }
 
     public static TempProvider getInstance() {
@@ -155,12 +131,6 @@ public class TempGenerator implements TempProvider, Runnable {
         return moyenneAnnee + ((amplitude / 2) * (-Math.sin((day * ((2 * Math.PI) / DAY_IN_YEAR)) + decalagePhase)));
     }
 
-    public static void setSTEP(int step)
-    {
-        if(step>0)
-            STEP=step;
-    }
-
     public void run(){
 
         // computes a value for the temp of the current day (average temp over the year: 15, max diff between min and max: 25)
@@ -176,17 +146,10 @@ public class TempGenerator implements TempProvider, Runnable {
         currentMinutes = (currentMinutes + STEP) % MINUTES_IN_DAY;
 
         //creates the tempRecord
-        DefaultModelFactory factory = new DefaultModelFactory();
-        TempRecord record = factory.createTempRecord();
-        Date now = new Date();
-        now.setTime(initDate.getTime()+  currentDay* 24 * 60 * 60 * 1000+  currentMinutes* 60 * 1000);
-
-      /*  record.setDayNumber(currentDay);
-        record.setHour(currentMinutes);  */
-        record.setDateTime(now);
-        record.setValue(value);
-        record.setName("Temperature");
-        record.setLocation(location);
+        TempRecord record = new TempRecord();
+        record.setDayNumber(currentDay);
+        record.setHour(currentMinutes);
+        record.setTempValue(value);
 
      //   logger.debug("Generated: " + record.getTempValue() + " Listsners:" + listeners.size());
 

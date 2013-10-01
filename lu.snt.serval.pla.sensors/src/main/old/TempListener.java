@@ -6,9 +6,7 @@ package lu.snt.serval.pla.sensors;/*
 */
 
 
-import lu.snt.serval.pla.model.TempRecord;
 
 public interface TempListener {
     void temperatureUpdated(TempRecord record);
-
 }

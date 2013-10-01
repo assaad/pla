@@ -7,6 +7,8 @@ package lu.snt.serval.pla.sensors;/*
 
 public interface TempProvider {
     void setSensingPeriod(long periodInMillis);
+    void setLocation(String location);
     void registerTempListener(TempListener listener);
     void unregisterTempListener(TempListener listener);
+    void setTime(int day);
 }
