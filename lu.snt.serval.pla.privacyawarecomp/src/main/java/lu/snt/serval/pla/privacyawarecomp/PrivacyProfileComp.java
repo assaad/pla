@@ -19,6 +19,7 @@ import org.kevoree.ContainerRoot;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.MessagePort;
 import org.kevoree.framework.service.handler.ModelListenerAdapter;
+import org.kevoree.log.Log;
 
 import java.util.Hashtable;
 
@@ -43,11 +44,13 @@ public class PrivacyProfileComp extends  org.kevoree.framework.AbstractComponent
 
     @Port(name = "PrivacyProfileIn")
     public void incomingPrivacyProfile(Object o) {
+        Log.debug("Privacy component received a query");
           QueryPrivacyProfile qpp =  (QueryPrivacyProfile) o;
         PrivacyProfile pp =   getByUserProfile(qpp.getOwningQuery().getUserProfile()) ;
         AnswerPrivacyProfile ans= factory.createAnswerPrivacyProfile();
         ans.setPrivacyRule(getRule(pp,qpp.getDataType()));
         SendResult(ans);
+        Log.debug("Privacy component sending answer");
 
 
     }
@@ -55,13 +58,19 @@ public class PrivacyProfileComp extends  org.kevoree.framework.AbstractComponent
     private PrivacyRule getRule(PrivacyProfile pp, DataType dt)
     {
         if(pp==null||dt==null)
+        {
+            Log.debug("Returning empty Rule");
             return factory.createEmptyRule();
+        }
         Iterator iter = pp.getPrivacyRules().iterator();
         while(iter.hasNext()) {
             PrivacyRule element = (PrivacyRule)  iter.next();
             DataType current = element.getDataType();
             if(current.getName().equals(dt.getName()) && current.getLocation().equals(dt.getLocation()))
+            {
+                Log.debug("Returning a rule");
                 return element;
+            }
         }
         return factory.createEmptyRule();
 

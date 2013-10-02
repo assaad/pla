@@ -64,6 +64,7 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
     {
         if(queryCount<q.getQueryRequests().size())
         {
+            Log.debug("Inside get Query Request");
             Query temp = factory.createQuery();
             QueryPrivacyProfile qpp =   factory.createQueryPrivacyProfile();
             temp.setUserProfile(q.getUserProfile());
@@ -71,6 +72,7 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
             QueryDataType qr = (QueryDataType) q.getQueryRequests().get(queryCount);
             qpp.setDataType(qr.getDataType());
             MessagePort prodPort =  getPortByName("PrivacyProfileOut", MessagePort.class);
+            Log.debug("Sent to Privacy component");
             if (prodPort != null) {
                 prodPort.process(qpp);
             }
@@ -110,7 +112,7 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
     }
 
     public void receiveQuery(Query q, Drop d) {
-        System.out.println("Server has Received a query")   ;
+       // System.out.println("Server has Received a query")   ;
         this.d=d;
         this.q=q;
         queryCount=0;

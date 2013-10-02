@@ -22,14 +22,8 @@ public class Main {
 
         query.setUserProfile(user);
 
-        //TEST WITHOUT REQUESTS
-        Client c = new Client();
-        Query queryWithAnswer = c.sendQuery(query);
-
-
-
         QueryDataType request1 = factory.createQueryDataType();
-        request1.setOwningQuery(query);
+
 
 
 
@@ -40,14 +34,23 @@ public class Main {
 
         request1.setDataType(dt);
 
-         IntervalBlurring ib = factory.createIntervalBlurring();
+        IntervalBlurring ib = factory.createIntervalBlurring();
         ib.setIntervalLength(0.0);
 
         request1.setRequestedValueBlurring(ib);
+        query.addQueryRequests(request1);
+
+        System.out.println(request1.getOwningQuery()==query);
+        //request1.setOwningQuery(query);
 
         //request1.setDataType(factory.createDataType());
 
-        query.addQueryRequests(request1);
+
+
+
+        Client c = new Client();
+        Query queryWithAnswer = c.sendQuery(query);
+
 
 
 
