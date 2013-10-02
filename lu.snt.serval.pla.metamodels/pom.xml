@@ -13,11 +13,19 @@
 
     <artifactId>lu.snt.serval.pla.metamodels</artifactId>
 
+    <properties>
+        <kmf.version>1.5.5</kmf.version>
+        <!--
+        <kevoree.exlude>org.kevoree.modeling:org.kevoree.modeling.microframework</kevoree.exlude>
+        -->
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.kevoree.modeling</groupId>
             <artifactId>org.kevoree.modeling.microframework</artifactId>
-            <version>1.5.5-SNAPSHOT</version>
+            <version>${kmf.version}</version>
         </dependency>
     </dependencies>
 
@@ -26,7 +34,7 @@
             <plugin>
                 <groupId>org.kevoree.modeling</groupId>
                 <artifactId>org.kevoree.modeling.kotlin.generator.mavenplugin</artifactId>
-                <version>1.5.5-SNAPSHOT</version>
+                <version>${kmf.version}</version>
                 <extensions>true</extensions>
                 <executions>
                     <execution>

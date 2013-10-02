@@ -1,9 +1,10 @@
-package lu.snt.serval.pla.privacyawarecomp;/*
+package lu.snt.serval.pla.privacyawarecomp;
+/*
 * Author : Gregory Nain (developer.name@uni.lu)
 * Date : 12/09/13
 */
-import lu.snt.serval.pla.loader.JSONModelLoader;
 import lu.snt.serval.pla.model.Query;
+import lu.snt.serval.pla.loader.JSONModelLoader;
 import lu.snt.serval.pla.serializer.JSONModelSerializer;
 import org.kevoree.log.Log;
 import org.kevoree.modeling.api.KMFContainer;
@@ -16,22 +17,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server implements Runnable {
+
     private ServerSocket welcomeSocket = null;
     private PlaInterface plaInterface;
     private ExecutorService executor;
     private JSONModelLoader loader = new JSONModelLoader();
     private JSONModelSerializer serializer = new JSONModelSerializer();
 
-    public Server(PlaInterface plaInterface)
-    {
+    public Server(PlaInterface plaInterface) {
         this.plaInterface=plaInterface;
         executor = Executors.newSingleThreadExecutor();
     }
 
-    public void run()
-    {
-        try
-        {
+    public void run() {
+        try {
             Socket connectionSocket = welcomeSocket.accept();
 
             System.out.println("Server got a connection");
@@ -86,8 +85,8 @@ public class Server implements Runnable {
     public void start() {
         try {
             welcomeSocket = new ServerSocket(9000);
-            executor.submit(this);
-            //new Thread(this).start();
+            //executor.submit(this);
+            new Thread(this).start();
             System.out.println("Server waiting connections ");
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -95,8 +94,7 @@ public class Server implements Runnable {
 
     }
 
-    public void stop()
-    {
+    public void stop() {
         try {
             executor.shutdownNow();
             welcomeSocket.close();

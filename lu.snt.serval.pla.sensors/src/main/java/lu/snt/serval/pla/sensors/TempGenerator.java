@@ -185,8 +185,8 @@ public class TempGenerator implements TempProvider, Runnable {
         record.setHour(currentMinutes);  */
         record.setDateTime(now);
         record.setValue(value);
-        record.setName("Temperature");
-        record.setLocation(location);
+        //record.setName("Temperature");
+        //record.setLocation(location);
 
      //   logger.debug("Generated: " + record.getTempValue() + " Listsners:" + listeners.size());
 
