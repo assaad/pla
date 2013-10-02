@@ -7,14 +7,13 @@
  */
 package lu.snt.serval.pla.client;
 
-import lu.snt.serval.kmf.loader.JSONModelLoader;
-import lu.snt.serval.kmf.serializer.JSONModelSerializer;
+import lu.snt.serval.pla.loader.JSONModelLoader;
 import lu.snt.serval.pla.model.ModelFactory;
 import lu.snt.serval.pla.model.Query;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
+import lu.snt.serval.pla.serializer.JSONModelSerializer;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.Socket;
 
 /*
@@ -42,7 +41,7 @@ import java.net.Socket;
 @ComponentType
 @Library(name = "Serval_PLA")
 */
-public class Client extends org.kevoree.framework.AbstractComponentType {
+public class Client {//extends org.kevoree.framework.AbstractComponentType {
 
     //Starting
     public Client() {

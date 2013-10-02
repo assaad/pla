@@ -12,9 +12,9 @@
 
     <modules>
         <module>../lu.snt.serval.pla.metamodels</module>
-        <module>../lu.snt.serval.pla.client</module>
         <module>../lu.snt.serval.pla.framework</module>
         <module>../lu.snt.serval.pla.privacyawarecomp</module>
+        <module>../lu.snt.serval.pla.client</module>
         <module>../lu.snt.serval.pla.cloakers</module>
         <module>../lu.snt.serval.pla.sensors</module>
         <!--

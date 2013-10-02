@@ -21,6 +21,7 @@ import org.kevoree.ContainerRoot;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.MessagePort;
 import org.kevoree.framework.service.handler.ModelListenerAdapter;
+import org.kevoree.log.Log;
 
 import java.util.Hashtable;
 
@@ -55,7 +56,9 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
     private int queryCount  ;
     private ModelFactory factory;
 
-
+    public PrivacyAwareComp() {
+        factory = new DefaultModelFactory();
+    }
 
     public void runQuery()
     {
@@ -75,14 +78,14 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
         else
         {
             //Return the answer to the server, which will return it to the client
-           d.put(q);
+            d.put(q);
         }
 
     }
 
     @Port(name = "CloakerIn")
     public void incomingCloaker(Object o) {
-       AnswerDataType ans = (AnswerDataType) o;
+        AnswerDataType ans = (AnswerDataType) o;
         q.addAnswers(ans);
         queryCount++ ;
         runQuery();
@@ -90,11 +93,11 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
     }
 
     @Port(name = "PrivacyProfileIn")
-       public void incomingPrivacyProfile(Object o) {
+    public void incomingPrivacyProfile(Object o) {
         System.out.println("Incoming privacy profile");
 
-       AnswerPrivacyProfile app = (AnswerPrivacyProfile) o;
-       QueryCloaker qc = factory.createQueryCloaker();
+        AnswerPrivacyProfile app = (AnswerPrivacyProfile) o;
+        QueryCloaker qc = factory.createQueryCloaker();
         qc.setPrivacyRule(app.getPrivacyRule());
         QueryDataType qr = (QueryDataType) q.getQueryRequests().get(queryCount);
         qc.setQueriedDataType(qr);
@@ -106,8 +109,7 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
 
     }
 
-    public void receiveQuery(Query q, Drop d)
-    {
+    public void receiveQuery(Query q, Drop d) {
         System.out.println("Server has Received a query")   ;
         this.d=d;
         this.q=q;
@@ -126,14 +128,14 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
 
     @Start
     public void start() {
-        factory = new DefaultModelFactory();
-        server=new Server(this);
+        server = new Server(this);
         server.start();
+        Log.debug("Privacy Aware component Started");
     }
 
     @Stop
     public void stop() {
-
+        server.stop();
     }
 
     @Update
