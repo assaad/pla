@@ -13,13 +13,6 @@
 
     <artifactId>lu.snt.serval.pla.metamodels</artifactId>
 
-    <properties>
-        <kmf.version>1.5.5</kmf.version>
-        <!--
-        <kevoree.exlude>org.kevoree.modeling:org.kevoree.modeling.microframework</kevoree.exlude>
-        -->
-    </properties>
-
 
     <dependencies>
         <dependency>

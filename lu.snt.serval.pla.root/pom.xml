@@ -23,6 +23,7 @@
 
 
     <properties>
+        <kmf.version>1.5.7</kmf.version>
         <kevoree.version>2.0.11</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -75,12 +76,12 @@
 
     <repositories>
         <repository>
-            <id>kevoree-release</id>
-            <url>http://maven.kevoree.org/release</url>
+            <id>oss-snapshot</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>kevoree-snapshots</id>
-            <url>http://maven.kevoree.org/snapshots</url>
+            <id>oss-release</id>
+            <url>http://oss.sonatype.org/content/repositories/releases</url>
         </repository>
         <repository>
             <id>ruleMl.repo</id>
@@ -90,16 +91,12 @@
 
     <pluginRepositories>
         <pluginRepository>
+            <id>oss-snapshot</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
+        </pluginRepository>
+        <pluginRepository>
             <id>oss-release</id>
             <url>http://oss.sonatype.org/content/repositories/releases</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>plugin.kevoree-github</id>
-            <url>http://maven.kevoree.org/release</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>plugin.kevoree-snapshots</id>
-            <url>http://maven.kevoree.org/snapshots</url>
         </pluginRepository>
     </pluginRepositories>
 
