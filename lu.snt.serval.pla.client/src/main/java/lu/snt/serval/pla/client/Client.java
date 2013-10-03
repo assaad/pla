@@ -10,11 +10,13 @@ package lu.snt.serval.pla.client;
 import lu.snt.serval.pla.loader.JSONModelLoader;
 import lu.snt.serval.pla.model.ModelFactory;
 import lu.snt.serval.pla.model.Query;
+import lu.snt.serval.pla.model.QueryDataType;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import lu.snt.serval.pla.serializer.JSONModelSerializer;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Iterator;
 
 /*
 
@@ -51,9 +53,19 @@ public class Client {//extends org.kevoree.framework.AbstractComponentType {
     }
     public Query sendQuery(Query queryToSend) {
 
+
+
         Query answer = null;
         Socket socket = null;
         try{
+            //Patching date
+            Iterator iter = queryToSend.getQueryRequests().iterator();
+            while(iter.hasNext())
+            {
+                QueryDataType qdt = (QueryDataType) iter.next();
+                qdt.setDateTimeLong(qdt.getDateTime().getTime());
+            }
+            //Patching date done
 
             System.out.println("Client connecting");
             socket = new Socket("localhost", 9000);
@@ -82,6 +94,9 @@ public class Client {//extends org.kevoree.framework.AbstractComponentType {
 
             System.out.println("Client received answer:");
             System.out.println(serializer.serialize(answer));
+
+            System.out.println("Client sent query was:");
+            System.out.println(serializer.serialize(queryToSend));
 
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

@@ -6,6 +6,8 @@ package lu.snt.serval.pla.client;/*
 import lu.snt.serval.pla.model.*;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 
+import java.util.Date;
+
 public class Main {
 
 
@@ -34,8 +36,14 @@ public class Main {
 
         request1.setDataType(dt);
 
+        Date d = new Date();
+        d.setTime(d.getTime()-5*24*60*60*1000+25*60*1000);   //20 minutes from 5 days ago
+
+        request1.setDateTime(d);
+
+
         IntervalBlurring ib = factory.createIntervalBlurring();
-        ib.setIntervalLength(0.0);
+        ib.setIntervalLength((float)0.0);
 
         request1.setRequestedValueBlurring(ib);
         query.addQueryRequests(request1);
