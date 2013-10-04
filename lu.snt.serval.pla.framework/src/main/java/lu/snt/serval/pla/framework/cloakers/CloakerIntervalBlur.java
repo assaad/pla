@@ -34,6 +34,9 @@ public class CloakerIntervalBlur extends Cloaker {
         q.setDataType(qc.getQueriedDataType().getDataType());
         q.setDateTimeTo(qc.getQueriedDataType().getDateTime());
 
+        if(q.getDataType()==null)
+            Log.debug("STOOOP");
+
        long initTime=0;
         if(qc.getQueriedDataType().getRequestedTimeBlurring()==null)
         {

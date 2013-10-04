@@ -32,6 +32,7 @@ public class Main {
         DataType dt = factory.createDataType();
         dt.setName("Temperature");
         dt.setLocation("Room1");
+        query.addDataTypes(dt);
 
 
         request1.setDataType(dt);

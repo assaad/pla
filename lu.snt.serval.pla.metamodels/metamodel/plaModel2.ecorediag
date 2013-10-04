@@ -742,19 +742,6 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_veO1gBu-EeOUH-sEbKmmCw" id="(0.7647058823529411,0.32558139534883723)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_veO1gRu-EeOUH-sEbKmmCw" id="(0.1989247311827957,0.7647058823529411)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_9p5C8Bu-EeOUH-sEbKmmCw" type="3002" source="_yWtwcBu8EeOUH-sEbKmmCw" target="_JrmMMBu9EeOUH-sEbKmmCw">
-    <children xmi:type="notation:Node" xmi:id="_9p6REBu-EeOUH-sEbKmmCw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_9p6RERu-EeOUH-sEbKmmCw" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_9p6REhu-EeOUH-sEbKmmCw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_9p6RExu-EeOUH-sEbKmmCw" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_9p5C8Ru-EeOUH-sEbKmmCw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_9p5C8hu-EeOUH-sEbKmmCw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/QueryPrivacyProfile/dataType"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9p5C8xu-EeOUH-sEbKmmCw" points="[20, -20, -744, 183]$[67, -68, -697, 135]$[763, -202, -1, 1]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9p_woBu-EeOUH-sEbKmmCw" id="(0.015503875968992248,0.14705882352941177)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_Mp2bIBu_EeOUH-sEbKmmCw" type="3002" source="_69Ko4Bu8EeOUH-sEbKmmCw" target="_UCnDUBu9EeOUH-sEbKmmCw">
     <children xmi:type="notation:Node" xmi:id="_Mp3CMRu_EeOUH-sEbKmmCw" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_Mp3CMhu_EeOUH-sEbKmmCw" x="-10" y="-10"/>
@@ -794,20 +781,6 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_UZUBMhu_EeOUH-sEbKmmCw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/AnswerDataType/resultedValueBlurring"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_UZUBMxu_EeOUH-sEbKmmCw" points="[64, -12, -654, -140]$[68, -12, -650, -140]$[668, 117, -50, -11]"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_jBoVcBu_EeOUH-sEbKmmCw" type="3002" source="_pJNfEBu8EeOUH-sEbKmmCw" target="_JrmMMBu9EeOUH-sEbKmmCw">
-    <children xmi:type="notation:Node" xmi:id="_jBo8gBu_EeOUH-sEbKmmCw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_jBpjkBu_EeOUH-sEbKmmCw" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_jBpjkRu_EeOUH-sEbKmmCw" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_jBpjkhu_EeOUH-sEbKmmCw" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_jBoVcRu_EeOUH-sEbKmmCw" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_jBoVchu_EeOUH-sEbKmmCw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/QueryDataType/dataType"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jBoVcxu_EeOUH-sEbKmmCw" points="[25, -3, -830, 121]$[855, -123, 0, 1]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jBucEBu_EeOUH-sEbKmmCw" id="(0.5692307692307692,0.09803921568627451)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jBvDIBu_EeOUH-sEbKmmCw" id="(0.0,0.29411764705882354)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_sutsECEgEeOwpuq8hGTvdA" type="3003" source="_k1KV4CEgEeOwpuq8hGTvdA" target="_-jIC8Bu8EeOUH-sEbKmmCw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_sutsESEgEeOwpuq8hGTvdA" routing="Rectilinear" lineColor="4210752"/>
@@ -921,24 +894,36 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_aVEXkCweEeOwa658OX0SGQ" points="[-5, -2, 205, 105]$[-144, -107, 66, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_aVLFQCweEeOwa658OX0SGQ" id="(0.4424778761061947,0.09302325581395349)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_vClUMCw5EeOwa658OX0SGQ" type="3002" source="_WKoXcSweEeOwa658OX0SGQ" target="_JrmMMBu9EeOUH-sEbKmmCw">
-    <children xmi:type="notation:Node" xmi:id="_vCw6YCw5EeOwa658OX0SGQ" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_vCw6YSw5EeOwa658OX0SGQ" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_vCw6Yiw5EeOwa658OX0SGQ" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_vCw6Yyw5EeOwa658OX0SGQ" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_vCl7QCw5EeOwa658OX0SGQ" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_vCl7QSw5EeOwa658OX0SGQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/QuerySensorDb/dataType"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vCl7Qiw5EeOwa658OX0SGQ" points="[16, -3, -511, 120]$[521, -98, -6, 25]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vDfTICw5EeOwa658OX0SGQ" id="(0.5125,0.07352941176470588)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_3Sy9QCxBEeOwa658OX0SGQ" type="3003" source="_wdYkoCxBEeOwa658OX0SGQ" target="_-jIC8Bu8EeOUH-sEbKmmCw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_3SzkUCxBEeOwa658OX0SGQ" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_3SzkUSxBEeOwa658OX0SGQ" fontName="Segoe UI"/>
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3SzkUixBEeOwa658OX0SGQ" points="[17, -10, -115, 81]$[180, -85, 48, 6]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3S65ECxBEeOwa658OX0SGQ" id="(0.43609022556390975,0.20588235294117646)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_aiMbQCznEeOD4fXLc-2PlA" type="3002" source="_RFqmgBu8EeOUH-sEbKmmCw" target="_JrmMMBu9EeOUH-sEbKmmCw">
+    <children xmi:type="notation:Node" xmi:id="_aiSh4CznEeOD4fXLc-2PlA" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_aiSh4SznEeOD4fXLc-2PlA" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_aiUXECznEeOD4fXLc-2PlA" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_aiUXESznEeOD4fXLc-2PlA" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_aiMbQSznEeOD4fXLc-2PlA" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_aiMbQiznEeOD4fXLc-2PlA" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/Query/dataTypes"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_aiMbQyznEeOD4fXLc-2PlA" points="[38, 8, -503, -118]$[547, 102, 6, -24]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_jazasCznEeOD4fXLc-2PlA" type="3002" source="_TT-RIBu8EeOUH-sEbKmmCw" target="_JrmMMBu9EeOUH-sEbKmmCw">
+    <children xmi:type="notation:Node" xmi:id="_ja0o0CznEeOD4fXLc-2PlA" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ja0o0SznEeOD4fXLc-2PlA" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_ja1P4CznEeOD4fXLc-2PlA" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ja1P4SznEeOD4fXLc-2PlA" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_jazasSznEeOD4fXLc-2PlA" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_jazasiznEeOD4fXLc-2PlA" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="plaModel2.ecore#//model/QueryRequest/dataType"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jazasyznEeOD4fXLc-2PlA" points="[31, -1, -695, 11]$[679, -20, -47, -8]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ja8koCznEeOD4fXLc-2PlA" id="(0.7666666666666667,0.4186046511627907)"/>
   </edges>
 </notation:Diagram>

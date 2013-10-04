@@ -6,6 +6,7 @@ package lu.snt.serval.pla.framework.privacyawarecomp;
 
 import lu.snt.serval.pla.loader.JSONModelLoader;
 import lu.snt.serval.pla.model.Query;
+import lu.snt.serval.pla.model.QueryDataType;
 import lu.snt.serval.pla.serializer.JSONModelSerializer;
 import org.kevoree.log.Log;
 import org.kevoree.modeling.api.KMFContainer;
@@ -56,7 +57,6 @@ public class Server implements Runnable {
             Query query = (Query) loaded.get(0);
             Log.debug("Request Loaded");
 //            Query query = (Query) loader.loadModelFromStream(serverInpuStream).get(0);
-
 
             //System.out.println("Server received query:");
             Drop drop = new Drop();

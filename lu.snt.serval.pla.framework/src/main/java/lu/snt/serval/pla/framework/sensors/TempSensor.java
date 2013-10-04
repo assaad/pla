@@ -8,7 +8,9 @@ package lu.snt.serval.pla.framework.sensors;
  * To change this template use File | Settings | File Templates.
  */
 
+import lu.snt.serval.pla.model.DataType;
 import lu.snt.serval.pla.model.TempRecord;
+import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.MessagePort;
 
@@ -37,8 +39,8 @@ import org.kevoree.framework.MessagePort;
 @ComponentType
 @Library(name = "Serval_PLA")
 public class TempSensor extends org.kevoree.framework.AbstractComponentType implements TempListener {
-
-
+    private DefaultModelFactory factory = new DefaultModelFactory();
+    private String location="";
     //Starting
     public TempSensor() {
 
@@ -47,6 +49,10 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
 
     //To send Message to Console
     public void temperatureUpdated(TempRecord record) {
+        DataType dt = factory.createDataType();
+        dt.setName("Temperature");
+        dt.setLocation(location);
+        record.setDataType(dt);
         MessagePort prodPort = getPortByName("TempOut", MessagePort.class);
         if (prodPort != null) {
             prodPort.process(record);
@@ -66,7 +72,7 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
         int step;
         long period;
         int day;
-        String location="";
+
 
         try
         {

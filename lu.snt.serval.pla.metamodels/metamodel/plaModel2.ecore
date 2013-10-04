@@ -11,10 +11,13 @@
           eType="#//model/Answer" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="userProfile" lowerBound="1"
           eType="#//model/UserProfile" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" upperBound="-1"
+          eType="#//model/DataType" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryRequest" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owningQuery" eType="#//model/Query"
           eOpposite="#//model/Query/queryRequests"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="#//model/DataType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Answer" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="request" lowerBound="1"
@@ -31,8 +34,6 @@
           eType="#//model/TimeBlurring" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requestedValueBlurring"
           eType="#//model/ValueBlurring" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
-          eType="#//model/DataType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTimeLong" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryCloaker" eSuperTypes="#//model/QueryRequest">
@@ -40,10 +41,7 @@
           eType="#//model/QueryDataType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRule" eType="#//model/PrivacyRule"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryPrivacyProfile" eSuperTypes="#//model/QueryRequest">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
-          eType="#//model/DataType" containment="true"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="QueryPrivacyProfile" eSuperTypes="#//model/QueryRequest"/>
     <eClassifiers xsi:type="ecore:EClass" name="AnswerPrivacyProfile" eSuperTypes="#//model/Answer">
       <eStructuralFeatures xsi:type="ecore:EReference" name="privacyRule" eType="#//model/PrivacyRule"
           containment="true"/>
@@ -111,8 +109,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="QuerySensorDb" eSuperTypes="#//model/QueryRequest">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTimeFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTimeTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
-          eType="#//model/DataType" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IntervalFloatAnswer" eSuperTypes="#//model/AnswerDataType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>

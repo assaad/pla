@@ -62,7 +62,9 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
             QueryPrivacyProfile qpp =   factory.createQueryPrivacyProfile();
             temp.setUserProfile(q.getUserProfile());
             qpp.setOwningQuery(temp);
-            try
+
+
+         try
             {
                 if((q.getQueryRequests().get(queryCount)instanceof QueryDataType)==false)
                     throw new Exception("Invalid request type");
@@ -75,6 +77,11 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
                 //Patching done
                 if(currentQuery.getDateTime()==null)
                     throw new Exception("Invalid Query fields: Date cannot be empty");
+
+                if(currentQuery.getDataType()==null)
+                    Log.debug("Stop here before TRY!!");
+                else
+                    Log.debug("PASSED");
             }
             catch (Exception ex)
             {
@@ -82,7 +89,15 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
                 d.put(q);
                 return;
             }
+            if(currentQuery.getDataType()==null)
+                Log.debug("Stop here before QPP!!");
+            else
+                Log.debug("PASSED 2");
+
             qpp.setDataType(currentQuery.getDataType());
+            if(currentQuery.getDataType()==null)
+                Log.debug("Stop here before PRIVACY!!");
+
             MessagePort prodPort =  getPortByName("PrivacyProfileOut", MessagePort.class);
             if (prodPort != null) {
                 prodPort.process(qpp);
@@ -112,6 +127,8 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
     @Port(name = "PrivacyProfileIn")
     public void incomingPrivacyProfile(Object o) {
         //System.out.println("Incoming privacy profile");
+        if(currentQuery.getDataType()==null)
+            Log.debug("Stop here AFTER PRIVACY!!");
 
         AnswerPrivacyProfile app = (AnswerPrivacyProfile) o;
 
@@ -127,14 +144,17 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
         else
         {
 
+
         QueryCloaker qc = factory.createQueryCloaker();
         qc.setPrivacyRule(app.getPrivacyRule());
-        QueryDataType qr = (QueryDataType) q.getQueryRequests().get(queryCount);
-        qc.setQueriedDataType(qr);
+
+        qc.setQueriedDataType(currentQuery);
+        if(currentQuery.getDataType()==null)
+                Log.debug("Stop here before cloak!!");
+
 
         MessagePort prodPort =  getPortByName("CloakerOut", MessagePort.class);
         if (prodPort != null) {
-            Log.debug(qc.getClass().getName());
             prodPort.process(qc);
             Log.debug("Sent to Cloaker");
         }
@@ -147,6 +167,11 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
         this.d=d;
         this.q=q;
         queryCount=0;
+
+        QueryDataType qr = (QueryDataType) q.getQueryRequests().get(queryCount);
+        if(qr.getDataType()==null)
+            Log.debug("Stop here!!");
+
         runQuery();
 
 

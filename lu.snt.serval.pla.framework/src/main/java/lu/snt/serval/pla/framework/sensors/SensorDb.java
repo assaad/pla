@@ -50,8 +50,6 @@ public class SensorDb extends org.kevoree.framework.AbstractComponentType {
     public void incomingQuery(Object o) {
         QuerySensorDb qsdb = (QuerySensorDb) o;
         DataType dt = qsdb.getDataType();
-        if(dt==null)
-            Log.debug("DataType null");
 
         long dateFrom=qsdb.getDateTimeFrom().getTime();
         long dateTo=qsdb.getDateTimeTo().getTime();
@@ -79,6 +77,8 @@ public class SensorDb extends org.kevoree.framework.AbstractComponentType {
     {
         if(adt.getDataType()==null)
             Log.debug("Inside compare adt is null");
+        if(dt==null)
+            Log.debug("Inside compare dt is null");
         if(adt.getDataType().getName().equals(dt.getName()) && adt.getDataType().getLocation().equals(dt.getLocation()))
             return true;
         return false;
