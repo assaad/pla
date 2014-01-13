@@ -12,35 +12,38 @@ import lu.snt.serval.pla.model.DataType;
 import lu.snt.serval.pla.model.TempRecord;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
 
-
-@Provides({
-
-})
-
-@Requires({
-        @RequiredPort(name = "TempOut", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "ConsOut", type = PortType.MESSAGE, optional = true),
-})
-
-
-@DictionaryType({
-        @DictionaryAttribute(name = "StepInMin",defaultValue = "5", optional = true),
-        @DictionaryAttribute(name = "PeriodInMs",defaultValue = "2000", optional = true),
-        @DictionaryAttribute(name = "StartDay", defaultValue = "5", optional = true),
-        @DictionaryAttribute(name = "Location", defaultValue = "Room1", optional = true),
-
-})
 
 
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
-public class TempSensor extends org.kevoree.framework.AbstractComponentType implements TempListener {
+public class TempSensor implements TempListener {
+
+
+    @Output
+    private org.kevoree.api.Port tempOut;
+
+    @Output
+    private org.kevoree.api.Port consOut;
+
+
+    @Param (defaultValue = "2000")
+    int periodInMs=2000;
+
+    @Param (defaultValue = "5")
+    int stepInMin = 5;
+
+    @Param (defaultValue = "5")
+    int startDay = 5;
+
+    @Param (defaultValue = "Room1")
+    String location = "Room1";
+
+
+
     private DefaultModelFactory factory = new DefaultModelFactory();
-    private String location="";
     //Starting
     public TempSensor() {
 
@@ -53,15 +56,11 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
         dt.setName("Temperature");
         dt.setLocation(location);
         record.setDataType(dt);
-        MessagePort prodPort = getPortByName("TempOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(record);
-        }
 
-        prodPort = getPortByName("ConsOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(record.print());
-        }
+        tempOut.send(record);
+
+        consOut.send(record.print());
+
     }
 
 
@@ -69,31 +68,12 @@ public class TempSensor extends org.kevoree.framework.AbstractComponentType impl
     public void start() {
 
         TempProvider t = TempGenerator.getInstance();
-        int step;
-        long period;
-        int day;
 
-
-        try
-        {
-            step = Integer.parseInt((String) getDictionary().get("StepInMin"));
-            period = Long.parseLong((String) getDictionary().get("PeriodInMs"));
-            day = Integer.parseInt((String) getDictionary().get("StartDay"));
-            location = (String)   getDictionary().get("Location");
-        }
-        catch  (Exception ex)
-        {
-                System.out.println("HHHH" + ex.getMessage());
-            step=70;
-            period=2000;
-            day=5;
-            location="Room1";
-        }
-        TempGenerator.setSTEP(step);
+        TempGenerator.setSTEP(stepInMin);
         t.registerTempListener(this);
-        t.setSensingPeriod(period);
+        t.setSensingPeriod(periodInMs);
         t.setLocation(location);
-        t.setTime(day);
+        t.setTime(startDay);
 
 
 

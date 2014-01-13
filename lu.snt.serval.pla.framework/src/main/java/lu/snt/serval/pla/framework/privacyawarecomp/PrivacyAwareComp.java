@@ -11,35 +11,22 @@ package lu.snt.serval.pla.framework.privacyawarecomp;
 import lu.snt.serval.pla.model.*;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
 import org.kevoree.log.Log;
 
 import java.util.Date;
 
 
-@Provides({
-        @ProvidedPort(name = "PrivacyProfileIn", type = PortType.MESSAGE),
-        @ProvidedPort(name = "CloakerIn", type = PortType.MESSAGE),
-})
 
-@Requires({
-        @RequiredPort(name = "PrivacyProfileOut", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "CloakerOut", type = PortType.MESSAGE, optional = true),
-})
-
-
-@DictionaryType({
-//        @DictionaryAttribute(name = "StepInMin", optional = true),
-        //      @DictionaryAttribute(name = "PeriodInMs", optional = true),
-
-})
-
-
-//((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
-public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentType implements PlaInterface {
+public class PrivacyAwareComp implements PlaInterface {
+
+    @Output
+    private org.kevoree.api.Port cloakerOut;
+
+    @Output
+    private org.kevoree.api.Port privacyProfileOut;
 
     private Server server;
     private Drop d;
@@ -98,11 +85,8 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
             if(currentQuery.getDataType()==null)
                 Log.debug("Stop here before PRIVACY!!");
 
-            MessagePort prodPort =  getPortByName("PrivacyProfileOut", MessagePort.class);
-            if (prodPort != null) {
-                prodPort.process(qpp);
-                Log.debug("Sent to Privacy profile component");
-            }
+            privacyProfileOut.send(qpp);
+
         }
         else
         {
@@ -113,8 +97,8 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
 
     }
 
-    @Port(name = "CloakerIn")
-    public void incomingCloaker(Object o) {
+    @Input
+    public void cloackerIn(Object o) {
         System.out.println("Answer received from Cloaker");
         AnswerDataType ans = (AnswerDataType) o;
         ans.setRequest(currentQuery);
@@ -124,8 +108,8 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
 
     }
 
-    @Port(name = "PrivacyProfileIn")
-    public void incomingPrivacyProfile(Object o) {
+    @Input
+    public void privacyProfileIn(Object o) {
         //System.out.println("Incoming privacy profile");
         if(currentQuery.getDataType()==null)
             Log.debug("Stop here AFTER PRIVACY!!");
@@ -153,11 +137,8 @@ public class PrivacyAwareComp extends  org.kevoree.framework.AbstractComponentTy
                 Log.debug("Stop here before cloak!!");
 
 
-        MessagePort prodPort =  getPortByName("CloakerOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(qc);
-            Log.debug("Sent to Cloaker");
-        }
+            cloakerOut.send(qc);
+
         }
 
     }

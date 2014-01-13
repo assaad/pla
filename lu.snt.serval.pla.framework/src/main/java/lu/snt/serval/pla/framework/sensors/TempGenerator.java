@@ -166,7 +166,7 @@ public class TempGenerator implements TempProvider, Runnable {
         double dayAverage = tempMoyPerDay(currentDay, 15, 25);
         int amplitude = (int) (8 + (Math.random() * 5));
         // computes a value for the temp of the current minute, with an amplitude between 8 and 13.
-        float value = (float)tempPerMinute(currentMinutes, dayAverage, amplitude);
+        double value = tempPerMinute(currentMinutes, dayAverage, amplitude);
 
         // Goes forward in the year :-)
         if(currentMinutes + STEP >= MINUTES_IN_DAY) {

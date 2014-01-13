@@ -25,20 +25,16 @@
 
 
     <properties>
-        <kmf.version>1.5.7</kmf.version>
-        <kevoree.version>2.0.11</kevoree.version>
+        <kmf.version>1.9.6</kmf.version>
+        <kevoree.version>3.1.1</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-         <dependency>
-            <groupId>org.kevoree.tools</groupId>
-            <artifactId>org.kevoree.tools.javase.framework</artifactId>
-            <version>${kevoree.version}</version>
-        </dependency>
+
         <dependency>
-            <groupId>org.kevoree.tools</groupId>
-            <artifactId>org.kevoree.tools.annotation.api</artifactId>
+            <groupId>org.kevoree</groupId>
+            <artifactId>org.kevoree.annotation.api</artifactId>
             <version>${kevoree.version}</version>
         </dependency>
     </dependencies>
@@ -47,7 +43,7 @@
         <plugins>
             <plugin>
                 <groupId>org.kevoree.tools</groupId>
-                <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
+                <artifactId>org.kevoree.tools.mavenplugin</artifactId>
                 <version>${kevoree.version}</version>
                 <extensions>true</extensions>
                 <configuration>
@@ -57,7 +53,7 @@
                     <execution>
                         <goals>
                             <goal>generate</goal>
-                            <goal>compile</goal>
+
                         </goals>
                     </execution>
                 </executions>

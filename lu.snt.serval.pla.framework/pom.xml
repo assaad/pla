@@ -23,6 +23,15 @@
             <artifactId>lu.snt.serval.pla.metamodels</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.kevoree.log</groupId>
+            <artifactId>org.kevoree.log</artifactId>
+            <version>1</version>
+        </dependency>
+
+
+
     </dependencies>
     <build>
         <plugins>

@@ -11,54 +11,40 @@ import lu.snt.serval.pla.model.ModelFactory;
 import lu.snt.serval.pla.model.QueryCloaker;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
+import org.kevoree.api.Context;
 import org.kevoree.log.Log;
 
 import java.util.ArrayList;
 
 
 
-@Provides({
 
-        @ProvidedPort(name = "CloakerIn", type = PortType.MESSAGE),
-        @ProvidedPort(name = "DataIn", type = PortType.MESSAGE),
-})
-
-@Requires({
-        @RequiredPort(name = "CloakerOut", type = PortType.MESSAGE, optional = true),
-        @RequiredPort(name = "DataOut", type = PortType.MESSAGE, optional = true),
-})
-
-
-
-/*@DictionaryType({
-        @DictionaryAttribute(name = "Name", optional = false),
-   //     @DictionaryAttribute(name = "InitialKnowledgeBaseFile", optional = true),
-     //   @DictionaryAttribute(name = "InitialTrustFile", optional = true),
-
-})  */
-
-
-//((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
-public abstract class Cloaker extends org.kevoree.framework.AbstractComponentType {
+public abstract class Cloaker {
     protected ModelFactory factory;
     protected QueryCloaker qc;
 
     protected  AnswerDataType ans;
     //Starting
 
+    @Output
+    private org.kevoree.api.Port cloakerOut;
+    @Output
+    private org.kevoree.api.Port dataOut;
 
-    @Port(name = "CloakerIn")
-    public void incomingQuery(Object o)
+    @KevoreeInject
+    private Context mycontext;
+
+    @Input
+    public void queryIn(Object o)
     {
         try
         {
             Log.debug(o.getClass().getName());
             qc =   (QueryCloaker) o;
-            if (qc.getPrivacyRule().getBlurringAlgorithm().equals(this.getName()))
+            if (qc.getPrivacyRule().getBlurringAlgorithm().equals(mycontext.getInstanceName()))
             {
                     prepareRequest();
             }
@@ -76,26 +62,20 @@ public abstract class Cloaker extends org.kevoree.framework.AbstractComponentTyp
 
     protected void returnResult(Object o)
     {
-        MessagePort prodPort =  getPortByName("CloakerOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(o);
-            System.out.println("Cloaker "+ this.getName() + " returning result");
-        }
+        cloakerOut.send(o);
+        System.out.println("Cloaker "+ mycontext.getInstanceName() + " returning result");
+
     }
 
     protected void askSensorDb(Object o)
     {
-        MessagePort prodPort =  getPortByName("DataOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(o);
-            //System.out.println("Cloaker "+ this.getName() + " returning result");
-        }
+        dataOut.send(o);
 
     }
 
 
-    @Port(name = "DataIn")
-    public void incomingData(Object o)
+    @Input
+    public void DataIn(Object o)
     {
         ArrayList<AnswerDataType> rawAnswers = (ArrayList<AnswerDataType>) o;
         blur(rawAnswers);

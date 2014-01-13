@@ -59,7 +59,7 @@ public class CloakerIntervalBlur extends Cloaker {
         TimeAveraging tb=factory.createTimeAveraging();
         tb.setDuration(initTime);
         Log.debug("init time" + initTime);
-        ans.setResultedTimeBlurring(tb);
+        ans.addBlurrings(tb);
 
         Date m = new Date();
         m.setTime(q.getDateTimeTo().getTime()-initTime);
@@ -82,7 +82,7 @@ public class CloakerIntervalBlur extends Cloaker {
         float result = (float) 0;
         while (iter.hasNext())
         {
-            FloatValueAnswer element = (FloatValueAnswer) iter.next();
+            DoubleValueAnswer element = (DoubleValueAnswer) iter.next();
             result+=  element.getValue();
         }
         result=result/(rawAnswers.size());

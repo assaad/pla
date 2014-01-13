@@ -12,7 +12,6 @@ import lu.snt.serval.pla.model.AnswerDataType;
 import lu.snt.serval.pla.model.DataType;
 import lu.snt.serval.pla.model.QuerySensorDb;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
 import org.kevoree.log.Log;
 
 import java.util.ArrayList;
@@ -20,34 +19,21 @@ import java.util.Collection;
 import java.util.Iterator;
 
 
-@Provides({
-        @ProvidedPort(name = "DataQueryIn", type = PortType.MESSAGE),
-        @ProvidedPort(name = "SensorIn", type = PortType.MESSAGE),
-})
-
-@Requires({
-        @RequiredPort(name = "DataOut", type = PortType.MESSAGE, optional = true),
-       // @RequiredPort(name = "ConsOut", type = PortType.MESSAGE, optional = true),
-})
-
-
-@DictionaryType({
-//        @DictionaryAttribute(name = "StepInMin", optional = true),
-  //      @DictionaryAttribute(name = "PeriodInMs", optional = true),
-
-})
 
 
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
 @Library(name = "Serval_PLA")
-public class SensorDb extends org.kevoree.framework.AbstractComponentType {
+public class SensorDb {
     private Collection<AnswerDataType> sensorData;
 
+    @Output
+    private org.kevoree.api.Port dataOut;
 
-    @Port(name = "DataQueryIn")
-    public void incomingQuery(Object o) {
+
+    @Input
+    public void dataQueryIn(Object o) {
         QuerySensorDb qsdb = (QuerySensorDb) o;
         DataType dt = qsdb.getDataType();
 
@@ -64,11 +50,8 @@ public class SensorDb extends org.kevoree.framework.AbstractComponentType {
                 ansdb.add(element);
         }
 
-        MessagePort prodPort =  getPortByName("DataOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(ansdb);
+        dataOut.send(ansdb);
             Log.debug("Found in DB "+ansdb.size() + " elements");
-        }
 
 
     }
@@ -96,8 +79,8 @@ public class SensorDb extends org.kevoree.framework.AbstractComponentType {
         return  false;
     }
 
-    @Port(name = "SensorIn")
-    public void incomingSensorInfo(Object o) {
+    @Input
+    public void sensorIn(Object o) {
         try{
             AnswerDataType temp = (AnswerDataType) o;
             sensorData.add(temp);

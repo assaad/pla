@@ -11,32 +11,28 @@ package lu.snt.serval.pla.framework.privacyawarecomp;
 import lu.snt.serval.pla.model.*;
 import lu.snt.serval.pla.model.impl.DefaultModelFactory;
 import org.kevoree.annotation.*;
-import org.kevoree.framework.MessagePort;
 import org.kevoree.log.Log;
 
 import java.util.Iterator;
 
 
-@Provides({
-        @ProvidedPort(name = "PrivacyProfileIn", type = PortType.MESSAGE),
-})
 
-@Requires({
-        @RequiredPort(name = "PrivacyProfileOut", type = PortType.MESSAGE, optional = true),
-})
 
 
 @ComponentType
 @Library(name = "Serval_PLA")
-public class PrivacyProfileComp extends  org.kevoree.framework.AbstractComponentType {
+public class PrivacyProfileComp {
+
+    @Output
+    private org.kevoree.api.Port privacyProfileOut;
 
     private PrivacyProfileDb ppDb;
     private ModelFactory factory;
 
 
 
-    @Port(name = "PrivacyProfileIn")
-    public void incomingPrivacyProfile(Object o) {
+    @Input
+    public void privacyProfileIn(Object o) {
         Log.debug("Privacy component received a query");
           QueryPrivacyProfile qpp =  (QueryPrivacyProfile) o;
         PrivacyProfile pp =   getByUserProfile(qpp.getOwningQuery().getUserProfile()) ;
@@ -79,10 +75,8 @@ catch (Exception ex)
 
     private void SendResult(AnswerPrivacyProfile ans)
     {
-        MessagePort prodPort =  getPortByName("PrivacyProfileOut", MessagePort.class);
-        if (prodPort != null) {
-            prodPort.process(ans);
-        }
+        privacyProfileOut.send(ans);
+
     }
 
 
