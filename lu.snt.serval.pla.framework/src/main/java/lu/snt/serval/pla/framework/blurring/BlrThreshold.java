@@ -21,8 +21,8 @@ import org.kevoree.log.Log;
 public class BlrThreshold extends ValueBlurring {
 
 
-    @Param(defaultValue = "0")
-    double threshold =0;
+    @Param(defaultValue = "6")
+    double threshold =6;
 
     @Param(defaultValue = "true")
     boolean greaterThan =true;
