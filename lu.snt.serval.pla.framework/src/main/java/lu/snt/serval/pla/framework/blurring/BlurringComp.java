@@ -15,8 +15,7 @@ import org.kevoree.annotation.Output;
  * assaad.mouawad@gmail.com
  */
 
-@ComponentType
-@Library(name = "PLA_Blurring")
+
 public abstract class BlurringComp {
 
     protected static ModelFactory factory = new DefaultModelFactory();

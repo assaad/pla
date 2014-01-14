@@ -18,7 +18,7 @@ import org.kevoree.annotation.*;
 //((MessagePort)getPortByName("QueryOut")).process(object data);
 
 @ComponentType
-@Library(name = "Serval_PLA")
+@Library(name = "PLA_Sensor")
 public class TempSensor implements TempListener {
 
 

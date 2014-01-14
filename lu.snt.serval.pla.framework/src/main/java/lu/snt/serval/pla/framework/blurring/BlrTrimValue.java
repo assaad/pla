@@ -31,7 +31,10 @@ public class BlrTrimValue extends ValueBlurring {
 
     @Override
     public void sensorIn(Object o) {
+        Log.debug("Inside override");
        try {
+           resultOut.send("received");
+
            DoubleValueAnswer signal = (DoubleValueAnswer) o;
            signal.setValue(round(signal.getValue(),digits));
 
@@ -45,7 +48,8 @@ public class BlrTrimValue extends ValueBlurring {
            //Add information about the current blurring
            // signal.addBlurrings();
 
-           resultOut.send(signal);
+           resultOut.send(signal.getValue());
+           //resultOut.send(signal);
 
         }
         catch (Exception ex)
