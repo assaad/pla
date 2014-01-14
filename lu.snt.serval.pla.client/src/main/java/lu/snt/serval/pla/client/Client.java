@@ -43,7 +43,7 @@ import java.util.Iterator;
 @ComponentType
 @Library(name = "Serval_PLA")
 */
-public class Client {//extends org.kevoree.framework.AbstractComponentType {
+public class Client {//extends org.kevoree.sensor.AbstractComponentType {
 
     //Starting
     public Client() {

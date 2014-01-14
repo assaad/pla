@@ -1,0 +1,63 @@
+repo "http://repo1.maven.org/maven2/"
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.3
+include mvn:org.kevoree:org.kevoree.api:3.1.2
+include mvn:org.kevoree:org.kevoree.api:3.1.1
+include mvn:org.kevoree:org.kevoree.annotation.api:3.0.3
+include mvn:org.kevoree.kcl:org.kevoree.kcl:5
+include mvn:org.kevoree.kcl:org.kevoree.kcl:4
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.2
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.1
+include mvn:org.kevoree:org.kevoree.maven.resolver:6
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.0.2
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
+include mvn:org.kevoree.log:org.kevoree.log:1
+include mvn:org.java-websocket:Java-WebSocket:1.3.0
+include mvn:fr.inria.jfilter:jfilter-library:1.3
+include mvn:org.kevoree:org.kevoree.model:3.1.1
+include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.1673
+include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.6
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.3-SNAPSHOT
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
+include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
+include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.2
+include mvn:org.kevoree:org.kevoree.model:3.1.2
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.metamodels:1.0-SNAPSHOT
+
+add node0 : JavaNode
+set node0.started = "true"
+add node0.BlurredConsole : ToyConsole/3.1.2
+set node0.BlurredConsole.showInTab = "true"
+set node0.BlurredConsole.started = "true"
+add node0.TempSensor : TempSensor/1.0-SNAPSHOT
+set node0.TempSensor.location = "Room1"
+set node0.TempSensor.startDay = "5"
+set node0.TempSensor.periodInMs = "2000"
+set node0.TempSensor.stepInMin = "5"
+set node0.TempSensor.started = "true"
+add node0.BlrTrimVal : BlrTrimValue/1.0-SNAPSHOT
+set node0.BlrTrimVal.digits = "2"
+set node0.BlrTrimVal.started = "true"
+add node0.Converter : ObjectToStringConverter/1.0-SNAPSHOT
+set node0.Converter.started = "true"
+add node0.SensorConsole : ToyConsole/3.1.2
+set node0.SensorConsole.showInTab = "true"
+set node0.SensorConsole.started = "true"
+add AsyncBroa617 : AsyncBroadcast/3.0.2
+set AsyncBroa617.started = "true"
+add AsyncBroa369 : AsyncBroadcast/3.0.2
+set AsyncBroa369.started = "true"
+add AsyncBroa347 : AsyncBroadcast/3.0.2
+set AsyncBroa347.started = "true"
+add AsyncBroa803 : AsyncBroadcast/3.0.2
+set AsyncBroa803.started = "true"
+add sync : WSGroup/3.1.3
+set sync.started = "true"
+bind node0.TempSensor.tempOut AsyncBroa369
+bind node0.BlrTrimVal.sensorIn AsyncBroa369
+bind node0.Converter.resultOut AsyncBroa617
+bind node0.TempSensor.consOut AsyncBroa803
+bind node0.Converter.resultIn AsyncBroa347
+bind node0.BlrTrimVal.resultOut AsyncBroa347
+bind node0.BlurredConsole.showText AsyncBroa617
+bind node0.SensorConsole.showText AsyncBroa803
+attach node0 sync

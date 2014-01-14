@@ -12,6 +12,7 @@
     <packaging>jar</packaging>
 
     <artifactId>lu.snt.serval.pla.metamodels</artifactId>
+    <name>Serval :: PLA :: Metamodel</name>
 
 
     <dependencies>

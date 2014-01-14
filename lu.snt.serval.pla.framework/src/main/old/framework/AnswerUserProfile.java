@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.framework;
+package lu.snt.serval.pla.sensor;
 
 import lu.snt.serval.pla.userprofile.UserProfile;
 

@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.framework;
+package lu.snt.serval.pla.sensor;
 
 /**
  * Created with IntelliJ IDEA.
