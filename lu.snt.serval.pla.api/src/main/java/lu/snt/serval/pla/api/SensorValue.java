@@ -1,5 +1,9 @@
 package lu.snt.serval.pla.api;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -44,6 +48,26 @@ public class SensorValue {
 
     public String getType() {
         return type;
+    }
+
+    public String toJSON()
+    {
+        JSONObject json = new JSONObject(this);
+        return json.toString();
+    }
+
+    public static SensorValue fromJSON(String value)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            return (SensorValue) mapper.readValue(value, SensorValue.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+
     }
 
     @Override
