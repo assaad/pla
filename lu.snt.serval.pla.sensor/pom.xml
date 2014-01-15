@@ -18,11 +18,14 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>lu.snt.serval.pla</groupId>
-            <artifactId>lu.snt.serval.pla.metamodels</artifactId>
+            <artifactId>lu.snt.serval.pla.api</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.kevoree.log</groupId>

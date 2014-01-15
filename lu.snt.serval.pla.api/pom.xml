@@ -9,21 +9,13 @@
         <relativePath>../lu.snt.serval.pla.root/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <name>Serval :: PLA :: Blurring</name>
+    <name>Serval :: PLA :: Api</name>
 
-    <artifactId>lu.snt.serval.pla.blurring</artifactId>
+    <artifactId>lu.snt.serval.pla.api</artifactId>
 
-    <properties>
-        <kevoree.exlude>lu.snt.serval.pla:lu.snt.serval.pla.metamodels</kevoree.exlude>
-    </properties>
+   
 
     <dependencies>
-        <dependency>
-            <groupId>lu.snt.serval.pla</groupId>
-            <artifactId>lu.snt.serval.pla.api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.kevoree.log</groupId>

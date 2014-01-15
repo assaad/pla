@@ -11,24 +11,22 @@
     <name>Serval :: PLA :: ROOT</name>
 
     <modules>
-        <module>../lu.snt.serval.pla.metamodels</module>
-        <module>../lu.snt.serval.pla.framework</module>
-        <module>../lu.snt.serval.pla.blurring</module>
-        <module>../lu.snt.serval.pla.sensor</module>
-        <module>../lu.snt.serval.pla.client</module>
-
         <!--
-         <module>../lu.snt.serval.pla.privacyawarecomp</module>
-       <module>../lu.snt.serval.pla.cloakers</module>
-       <module>../lu.snt.serval.pla.sensors</module>
+       <module>../lu.snt.serval.pla.metamodels</module>
+       <module>../lu.snt.serval.pla.framework</module>
+       <module>../lu.snt.serval.pla.client</module>
+        -->
 
-       -->
+       <module>../lu.snt.serval.pla.blurring</module>
+       <module>../lu.snt.serval.pla.api</module>
+       <module>../lu.snt.serval.pla.sensor</module>
+
     </modules>
 
 
     <properties>
         <kmf.version>1.9.6</kmf.version>
-        <kevoree.version>3.1.2</kevoree.version>
+        <kevoree.version>3.1.3</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

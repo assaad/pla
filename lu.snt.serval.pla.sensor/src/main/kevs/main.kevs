@@ -1,62 +1,28 @@
-repo "http://repo1.maven.org/maven2/"
-include mvn:org.kevoree:org.kevoree.api:3.1.2
-include mvn:org.kevoree:org.kevoree.api:3.1.1
-include mvn:org.kevoree:org.kevoree.annotation.api:3.0.3
-include mvn:org.kevoree:org.kevoree.api:3.0.3
-include mvn:org.kevoree:org.kevoree.annotation.api:3.1.2
-include mvn:org.kevoree:org.kevoree.annotation.api:3.1.1
-include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.0.2
+repo http://repo1.maven.org/maven2/
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.4
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.4
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
-include mvn:org.java-websocket:Java-WebSocket:1.3.0
-include mvn:fr.inria.jfilter:jfilter-library:1.3
-include mvn:org.kevoree:org.kevoree.model:3.1.1
-include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.3
-include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
-include mvn:org.kevoree:org.kevoree.model:3.1.2
-include mvn:lu.snt.serval.pla:lu.snt.serval.pla.metamodels:1.0-SNAPSHOT
-include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.3
-include mvn:org.kevoree.kcl:org.kevoree.kcl:5
-include mvn:org.kevoree.kcl:org.kevoree.kcl:4
-include mvn:org.kevoree.kcl:org.kevoree.kcl:2
-include mvn:org.kevoree:org.kevoree.maven.resolver:6
-include mvn:org.kevoree:org.kevoree.model:3.0.3
-include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.602
-include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.0.2
-include mvn:org.kevoree:org.kevoree.maven.resolver:4
-include mvn:org.kevoree.log:org.kevoree.log:1
-include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.3
-include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.602
-include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.1673
-include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.6
-include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.2
-add node0 : JavaNode/3.1.3
+include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.4
+
+add node0 : JavaNode/3.1.4
 set node0.started = "true"
-add node0.Seonsor2Console : ToyConsole/3.1.2
-set node0.Seonsor2Console.showInTab = "true"
-set node0.Seonsor2Console.started = "true"
-add node0.TempSensor2 : TempSensor/1.0-SNAPSHOT
-set node0.TempSensor2.location = "Room2"
-set node0.TempSensor2.startDay = "5"
-set node0.TempSensor2.periodInMs = "2000"
-set node0.TempSensor2.stepInMin = "2"
-set node0.TempSensor2.started = "true"
-add node0.TempSensor1 : TempSensor/1.0-SNAPSHOT
-set node0.TempSensor1.location = "Room1"
-set node0.TempSensor1.startDay = "1"
-set node0.TempSensor1.periodInMs = "1000"
-set node0.TempSensor1.stepInMin = "1"
-set node0.TempSensor1.started = "true"
-add node0.Sensor1Console : ToyConsole/3.1.2
+add node0.Sensor356 : Sensor/1.0-SNAPSHOT
+set node0.Sensor356.id = "1"
+set node0.Sensor356.location = "Room1"
+set node0.Sensor356.startDay = "5"
+set node0.Sensor356.periodInMs = "2000"
+set node0.Sensor356.stepInMin = "5"
+set node0.Sensor356.type = "Temperature"
+set node0.Sensor356.started = "true"
+add sync : WSGroup/3.1.4
+set sync.started = "true"
+add node0.Sensor1Console : ToyConsole
 set node0.Sensor1Console.showInTab = "true"
 set node0.Sensor1Console.started = "true"
-add AsyncBroa729 : AsyncBroadcast/3.0.2
+add AsyncBroa729 : AsyncBroadcast
 set AsyncBroa729.started = "true"
-add AsyncBroa345 : AsyncBroadcast/3.0.2
-set AsyncBroa345.started = "true"
-add sync : WSGroup/3.1.3
-set sync.started = "true"
-bind node0.Seonsor2Console.showText AsyncBroa345
-bind node0.TempSensor1.consOut AsyncBroa729
-bind node0.TempSensor2.consOut AsyncBroa345
 bind node0.Sensor1Console.showText AsyncBroa729
+bind node0.Sensor356.SensorOut AsyncBroa729
 attach node0 sync
