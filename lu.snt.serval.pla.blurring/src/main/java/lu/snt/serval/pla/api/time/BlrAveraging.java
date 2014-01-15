@@ -22,7 +22,7 @@ import java.util.List;
 @Library(name = "PLA_Blurring")
 public class BlrAveraging extends TimeBlurring {
     @Param(defaultValue = "900000")
-    long timewindow = 15*60*1000; //15 minutes in microseconds
+    long timewindow = 15*60*1000; //15 minutes in milliseconds
 
     private List<SensorValue> ls;
 
