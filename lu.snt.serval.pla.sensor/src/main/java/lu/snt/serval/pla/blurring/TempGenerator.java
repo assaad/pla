@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.api;/*
+package lu.snt.serval.pla.blurring;/*
 * Author : Gregory Nain (developer.name@uni.lu)
 * Date : 06/12/12
 * (c) 2012 University of Luxembourg – Interdisciplinary Centre for Security Reliability and Trust (SnT)
@@ -114,7 +114,7 @@ public class TempGenerator implements TempProvider, Runnable {
     }
 
     /**
-     * Generates a temp value for the asked time of the day
+     * Generates a temp value for the asked Period of the day
      * @param minute the minute of the day
      * @param moyenneJour the average temp value for this day (see #tempMoyPerDay)
      * @param amplitude the maximum difference between min and max values over the day

@@ -1,9 +1,7 @@
-package lu.snt.serval.pla.api.time;
+package lu.snt.serval.pla.blurring.Period;
 
-import lu.snt.serval.pla.api.SensorValue;
-import org.kevoree.annotation.ComponentType;
-import org.kevoree.annotation.Library;
-import org.kevoree.annotation.Param;
+import lu.snt.serval.pla.blurring.SensorValue;
+import org.kevoree.annotation.*;
 import org.kevoree.log.Log;
 
 import java.util.ArrayList;
@@ -20,14 +18,11 @@ import java.util.List;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class BlrAveraging extends TimeBlurring {
-    @Param(defaultValue = "900000")
-    long timewindow = 15*60*1000; //15 minutes in milliseconds
-
-    private List<SensorValue> ls;
+public class CompAveraging extends Averaging {
+       private List<SensorValue> ls;
 
 
-    @Override
+    @Input
     public void sensorIn(Object o) {
 
         try {
@@ -60,7 +55,7 @@ public class BlrAveraging extends TimeBlurring {
                     res.setType(ls.get(0).getType());
 
 
-                    resultOut.send(res);
+                    blurringOut.send(res);
 
                     // Clear the list and add the new element
                     ls.clear();

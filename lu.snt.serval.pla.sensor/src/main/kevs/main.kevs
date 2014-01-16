@@ -2,7 +2,7 @@ repo http://repo1.maven.org/maven2/
 include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
 include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.4
 include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.4
-include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
 include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.4
 

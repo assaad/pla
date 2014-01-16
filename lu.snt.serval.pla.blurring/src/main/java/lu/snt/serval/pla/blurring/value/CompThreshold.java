@@ -1,7 +1,8 @@
-package lu.snt.serval.pla.api.value;
+package lu.snt.serval.pla.blurring.value;
 
-import lu.snt.serval.pla.api.SensorValue;
+import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
 import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
@@ -16,28 +17,22 @@ import org.kevoree.log.Log;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class BlrThreshold extends ValueBlurring {
+public class CompThreshold extends Threshold {
 
 
-    @Param(defaultValue = "6")
-    double threshold =6;
-
-    @Param(defaultValue = "true")
-    boolean greaterThan =true;
-
-    @Override
+    @Input
     public void sensorIn(Object o) {
         try {
             SensorValue signal = (SensorValue) o;
             if(greaterThan)
             {
                 if(signal.getValue()>=threshold)
-                    resultOut.send(signal);
+                    blurringOut.send(signal);
             }
             else
             {
                 if(signal.getValue()<=threshold)
-                    resultOut.send(signal);
+                    blurringOut.send(signal);
             }
         }
         catch (Exception ex)

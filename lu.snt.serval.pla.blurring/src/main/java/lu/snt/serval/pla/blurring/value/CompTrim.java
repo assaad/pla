@@ -1,7 +1,8 @@
-package lu.snt.serval.pla.api.value;
+package lu.snt.serval.pla.blurring.value;
 
-import lu.snt.serval.pla.api.SensorValue;
+import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
 import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
@@ -17,11 +18,7 @@ import java.math.BigDecimal;
  */
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class BlrTrimValue extends ValueBlurring {
-
-
-    @Param(defaultValue = "2")
-    int digits =2;
+public class CompTrim extends Trim {
 
 
     public static double round(double n, int digits) {
@@ -40,13 +37,13 @@ public class BlrTrimValue extends ValueBlurring {
            tb.setPrecision(digits);
 
 
-           //Add information about the current api
+           //Add information about the current blurring
            signal.addBlurrings(tb);
                                     */
-           //Add information about the current api
+           //Add information about the current blurring
            // signal.addBlurrings();
 
-           resultOut.send(signal);
+           blurringOut.send(signal);
 
         }
         catch (Exception ex)

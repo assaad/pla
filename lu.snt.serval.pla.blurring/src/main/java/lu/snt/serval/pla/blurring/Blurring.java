@@ -1,25 +1,19 @@
-package lu.snt.serval.pla.api;
+package lu.snt.serval.pla.blurring;
 
 import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Output;
 
 /**
  * User: assaad.moawad
- * Date: 13/01/14
- * Time: 13:36
+ * Date: 16/01/14
+ * Time: 18:02
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-
-
-public abstract class BlurringComp {
-
-    @Output
-    public org.kevoree.api.Port resultOut;
+public abstract class Blurring {
 
     @Input
     public abstract void sensorIn(Object o);
-
-
-
+    @Output
+    protected org.kevoree.api.Port blurringOut=null;
 }

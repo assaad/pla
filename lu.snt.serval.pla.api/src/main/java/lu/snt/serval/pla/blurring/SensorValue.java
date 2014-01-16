@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.api;
+package lu.snt.serval.pla.blurring;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;

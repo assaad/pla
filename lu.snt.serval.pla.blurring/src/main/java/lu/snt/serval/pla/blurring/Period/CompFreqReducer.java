@@ -1,11 +1,10 @@
-package lu.snt.serval.pla.api.time;
+package lu.snt.serval.pla.blurring.Period;
 
-import lu.snt.serval.pla.api.SensorValue;
+import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
 import org.kevoree.annotation.Param;
-
-import java.util.List;
 
 /**
  * User: assaad.moawad
@@ -17,19 +16,17 @@ import java.util.List;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class BlrFreqReducer  extends TimeBlurring {
-    @Param(defaultValue = "900000")
-    long timewindow = 15*60*1000; //15 minutes in milliseconds
+public class CompFreqReducer extends FreqReducer {
 
     private SensorValue previous=null;
 
 
-    @Override
+    @Input
     public void sensorIn(Object o) {
         if(previous==null)
         {
             previous=(SensorValue) o;
-            resultOut.send(previous);
+            blurringOut.send(previous);
         }
         else
         {
@@ -37,7 +34,7 @@ public class BlrFreqReducer  extends TimeBlurring {
             if((newElem.getTime()-previous.getTime())>=timewindow)
             {
                 previous=newElem;
-                resultOut.send(previous);
+                blurringOut.send(previous);
             }
         }
 

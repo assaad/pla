@@ -1,5 +1,5 @@
 repo "http://repo1.maven.org/maven2/"
-include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
 include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
 include mvn:org.kevoree.kcl:org.kevoree.kcl:6
 include mvn:org.kevoree:org.kevoree.annotation.api:3.1.3
@@ -21,7 +21,6 @@ add node0 : JavaNode/3.1.4
 set node0.started = "true"
 add node0.Sensor356 : Sensor/1.0-SNAPSHOT
 set node0.Sensor356.id = "1"
-set node0.Sensor356.location = "Room1"
 set node0.Sensor356.startDay = "5"
 set node0.Sensor356.periodInMs = "2000"
 set node0.Sensor356.stepInMin = "5"
@@ -62,17 +61,17 @@ add AsyncBroa238 : AsyncBroadcast/3.1.4
 set AsyncBroa238.started = "true"
 add sync : WSGroup/3.1.4
 set sync.started = "true"
-bind node0.BlrThresh877.resultOut AsyncBroa238
+bind node0.BlrThresh877.blurringOut AsyncBroa238
 bind node0.Sensor1Console.showText AsyncBroa729
 bind node0.BlrGaussi645.sensorIn AsyncBroa729
 bind node0.Sensor356.SensorOut AsyncBroa729
 bind node0.GausConsole.showText AsyncBroa424
-bind node0.BlrAverag776.resultOut AsyncBroa169
-bind node0.BlrGaussi645.resultOut AsyncBroa424
+bind node0.BlrAverag776.blurringOut AsyncBroa169
+bind node0.BlrGaussi645.blurringOut AsyncBroa424
 bind node0.BlrTrimVa521.sensorIn AsyncBroa729
 bind node0.AvgConsole.showText AsyncBroa169
 bind node0.BlrThresh877.sensorIn AsyncBroa729
-bind node0.BlrTrimVa521.resultOut AsyncBroa759
+bind node0.BlrTrimVa521.blurringOut AsyncBroa759
 bind node0.ThresholdConsole.showText AsyncBroa238
 bind node0.TrimConsole.showText AsyncBroa759
 bind node0.BlrAverag776.sensorIn AsyncBroa729

@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.api;
+package lu.snt.serval.pla.blurring;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +18,7 @@ public class Sensor implements TempListener {
 
 
     @Output
-    private org.kevoree.api.Port SensorOut;
+    private org.kevoree.api.Port sensorOut;
 
 
 
@@ -53,7 +53,7 @@ public class Sensor implements TempListener {
         s.setSensorID(id);
 
        // JSONObject jsonObject = new JSONObject(s);
-        SensorOut.send(s);
+        sensorOut.send(s);
 
     }
 

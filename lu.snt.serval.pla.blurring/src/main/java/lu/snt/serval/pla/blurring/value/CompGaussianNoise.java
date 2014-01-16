@@ -1,7 +1,8 @@
-package lu.snt.serval.pla.api.value;
+package lu.snt.serval.pla.blurring.value;
 
-import lu.snt.serval.pla.api.SensorValue;
+import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
 import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
@@ -16,21 +17,12 @@ import org.kevoree.log.Log;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class BlrGaussianNoise extends ValueBlurring {
+public class CompGaussianNoise extends Noise {
 
     private java.util.Random r = new java.util.Random();
 
 
-    @Param(defaultValue = "0")
-    double mean = 0;
-
-    @Param(defaultValue = "1")
-    double variance = 1;
-
-
-
-
-    @Override
+    @Input
     public void sensorIn(Object o) {
         double noise = r.nextGaussian() * Math.sqrt(variance) + mean;
          try {
@@ -38,7 +30,7 @@ public class BlrGaussianNoise extends ValueBlurring {
              signal.setValue(signal.getValue()+noise);
 
 
-             resultOut.send(signal);
+             blurringOut.send(signal);
 
          }
          catch (Exception ex)
