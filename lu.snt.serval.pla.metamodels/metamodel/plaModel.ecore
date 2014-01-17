@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pla"
+    nsURI="http://plamodel/1.0" nsPrefix="pla">
+  <eClassifiers xsi:type="ecore:EClass" name="Risk">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlurringSetting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="blurringType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="risk" eType="#//Risk"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="risk" lowerBound="1" eType="#//Risk"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minAttributes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Blurring" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueBlurring" abstract="true" eSuperTypes="#//Blurring"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PeriodBlurring" abstract="true" eSuperTypes="#//Blurring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timewindow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrimBlurring" eSuperTypes="#//ValueBlurring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="digits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ThresholdBlurring" eSuperTypes="#//ValueBlurring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threshold" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="greaterThan" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NoiseBlurring" eSuperTypes="#//ValueBlurring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FrequencyReduction" eSuperTypes="#//PeriodBlurring"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Averaging" eSuperTypes="#//PeriodBlurring"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Trust">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="3rdParty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trustLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//Risk"/>
+  </eClassifiers>
+</ecore:EPackage>
