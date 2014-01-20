@@ -3,41 +3,51 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pla"
     nsURI="http://plamodel/1.0" nsPrefix="pla">
+  <eClassifiers xsi:type="ecore:EClass" name="Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensors" upperBound="-1"
+        eType="#//SensorKind" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="risks" upperBound="-1"
+        eType="#//Risk" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="counterMeasures" upperBound="-1"
+        eType="#//CounterMeasure" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorKind">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="risks" upperBound="-1"
+        eType="#//Risk" eOpposite="#//Risk/sensors"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Risk">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="impact" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensors" upperBound="-1"
+        eType="#//SensorKind" eOpposite="#//SensorKind/risks"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BlurringSetting">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="blurringType" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="risk" eType="#//Risk"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="risk" lowerBound="1" eType="#//Risk"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minAttributes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CounterMeasure">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="risk" lowerBound="1" eType="#//Risk"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blurring" lowerBound="1"
+        eType="#//Blurring" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" upperBound="-1"
+        eType="#//Setting" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profile" eType="#//Profile"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Blurring" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ValueBlurring" abstract="true" eSuperTypes="#//Blurring"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PeriodBlurring" abstract="true" eSuperTypes="#//Blurring">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timewindow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Blurring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TrimBlurring" eSuperTypes="#//ValueBlurring">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="digits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Setting">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="impact" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ThresholdBlurring" eSuperTypes="#//ValueBlurring">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threshold" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="greaterThan" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NoiseBlurring" eSuperTypes="#//ValueBlurring">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FrequencyReduction" eSuperTypes="#//PeriodBlurring"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Averaging" eSuperTypes="#//PeriodBlurring"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Trust">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="3rdParty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trustLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//Risk"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Profile">
+    <eLiterals name="Linear"/>
+    <eLiterals name="Exponential" value="1"/>
+    <eLiterals name="Logarithmic" value="2"/>
   </eClassifiers>
 </ecore:EPackage>
