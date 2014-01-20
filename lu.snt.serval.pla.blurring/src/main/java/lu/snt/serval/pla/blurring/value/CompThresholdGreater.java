@@ -10,32 +10,26 @@ import org.kevoree.log.Log;
 /**
  * User: assaad.moawad
  * Date: 13/01/14
- * Time: 14:07
+ * Time: 15:43
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class CompGaussianNoise extends Noise {
-
-    private java.util.Random r = new java.util.Random();
+public class CompThresholdGreater extends Threshold {
 
 
     @Input
     public void sensorIn(Object o) {
-        double noise = r.nextGaussian() * Math.sqrt(variance);
-         try {
-             SensorValue signal = (SensorValue) o;
-             signal.setValue(signal.getValue()+noise);
-
-
-             blurringOut.send(signal);
-
-         }
-         catch (Exception ex)
-         {
-             Log.debug(ex.getMessage());
-         }
+        try {
+            SensorValue signal = (SensorValue) o;
+                if(signal.getValue()>=threshold)
+                    blurringOut.send(signal);
+        }
+        catch (Exception ex)
+        {
+            Log.debug(ex.getMessage());
+        }
     }
 }

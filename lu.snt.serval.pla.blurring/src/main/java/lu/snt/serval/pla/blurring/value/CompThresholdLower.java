@@ -4,7 +4,6 @@ import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
-import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
 
 /**
@@ -17,23 +16,13 @@ import org.kevoree.log.Log;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class CompThreshold extends Threshold {
-
-
+public class CompThresholdLower extends Threshold {
     @Input
     public void sensorIn(Object o) {
         try {
             SensorValue signal = (SensorValue) o;
-            if(greaterThan)
-            {
-                if(signal.getValue()>=threshold)
-                    blurringOut.send(signal);
-            }
-            else
-            {
                 if(signal.getValue()<=threshold)
                     blurringOut.send(signal);
-            }
         }
         catch (Exception ex)
         {

@@ -12,7 +12,4 @@ import org.kevoree.annotation.Param;
 public abstract class Threshold extends ValueBlurring {
     @Param(defaultValue = "6")
     double threshold =6;
-
-    @Param(defaultValue = "true")
-    boolean greaterThan =true;
 }

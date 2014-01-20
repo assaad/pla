@@ -10,9 +10,6 @@ import org.kevoree.annotation.Param;
  * assaad.mouawad@gmail.com
  */
 public abstract class Noise extends ValueBlurring {
-    @Param(defaultValue = "0")
-    double mean = 0;
-
     @Param(defaultValue = "1")
     double variance = 1;
 }

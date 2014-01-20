@@ -31,7 +31,7 @@ public class CompTrim extends Trim {
        try {
 
            SensorValue signal = (SensorValue) o;
-           signal.setValue(round(signal.getValue(),digits));
+           signal.setValue(round(signal.getValue(),digit));
 
           /* TrimBlurring tb= BlurringComp.factory.createTrimBlurring();
            tb.setPrecision(digits);

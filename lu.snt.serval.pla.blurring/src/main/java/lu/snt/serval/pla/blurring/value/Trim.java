@@ -11,5 +11,5 @@ import org.kevoree.annotation.Param;
  */
 public abstract class Trim extends ValueBlurring {
     @Param(defaultValue = "2")
-    int digits =2;
+    int digit =2;
 }

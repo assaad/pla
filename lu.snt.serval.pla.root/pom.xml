@@ -21,6 +21,7 @@
        <module>../lu.snt.serval.pla.blurring</module>
        <module>../lu.snt.serval.pla.api</module>
        <module>../lu.snt.serval.pla.sensor</module>
+        <module>../lu.snt.serval.pla.genetic</module>
 
 
     </modules>
