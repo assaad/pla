@@ -17,7 +17,7 @@ import org.kevoree.log.Log;
 
 @ComponentType
 @Library(name = "PLA_Blurring")
-public class CompThresholdGreater extends Threshold {
+public class CompThresholdHigher extends Threshold {
 
 
     @Input

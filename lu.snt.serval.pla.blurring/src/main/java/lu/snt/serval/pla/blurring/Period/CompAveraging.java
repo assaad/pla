@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.blurring.Period;
+package lu.snt.serval.pla.blurring.period;
 
 import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.*;

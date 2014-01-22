@@ -114,7 +114,7 @@ public class TempGenerator implements TempProvider, Runnable {
     }
 
     /**
-     * Generates a temp value for the asked Period of the day
+     * Generates a temp value for the asked period of the day
      * @param minute the minute of the day
      * @param moyenneJour the average temp value for this day (see #tempMoyPerDay)
      * @param amplitude the maximum difference between min and max values over the day

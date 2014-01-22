@@ -1,4 +1,4 @@
-repo http://repo1.maven.org/maven2/
+repo "http://repo1.maven.org/maven2/"
 include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
 include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.4
 include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.4
@@ -6,11 +6,11 @@ include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
 include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.4
 
+
 add node0 : JavaNode/3.1.4
 set node0.started = "true"
 add node0.Sensor356 : Sensor/1.0-SNAPSHOT
 set node0.Sensor356.id = "1"
-set node0.Sensor356.location = "Room1"
 set node0.Sensor356.startDay = "5"
 set node0.Sensor356.periodInMs = "2000"
 set node0.Sensor356.stepInMin = "5"
@@ -24,5 +24,5 @@ set node0.Sensor1Console.started = "true"
 add AsyncBroa729 : AsyncBroadcast
 set AsyncBroa729.started = "true"
 bind node0.Sensor1Console.showText AsyncBroa729
-bind node0.Sensor356.SensorOut AsyncBroa729
+bind node0.Sensor356.sensorOut AsyncBroa729
 attach node0 sync

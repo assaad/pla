@@ -1,10 +1,9 @@
-package lu.snt.serval.pla.blurring.Period;
+package lu.snt.serval.pla.blurring.period;
 
 import lu.snt.serval.pla.blurring.SensorValue;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
-import org.kevoree.annotation.Param;
 
 /**
  * User: assaad.moawad
