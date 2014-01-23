@@ -1,97 +1,107 @@
 repo "http://repo1.maven.org/maven2/"
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
-include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
 include mvn:org.codehaus.jackson:jackson-core-asl:1.9.13
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.9
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.6-SNAPSHOT
 include mvn:org.kevoree.kcl:org.kevoree.kcl:6
 include mvn:org.kevoree:org.kevoree.annotation.api:3.1.4
-include mvn:org.kevoree:org.kevoree.annotation.api:3.1.3
-include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.4
-include mvn:org.kevoree:org.kevoree.api:3.1.3
-include mvn:org.kevoree:org.kevoree.maven.resolver:7
+include mvn:org.kevoree:org.kevoree.maven.resolver:15
+include mvn:org.kevoree:org.kevoree.api:3.1.9
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
 include mvn:org.kevoree.log:org.kevoree.log:1
 include mvn:org.java-websocket:Java-WebSocket:1.3.0
+include mvn:org.kevoree:org.kevoree.model:3.1.9
 include mvn:org.json:json:20090211
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.6-SNAPSHOT
 include mvn:fr.inria.jfilter:jfilter-library:1.3
-include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.4
 include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.1673
 include mvn:org.codehaus.jackson:jackson-mapper-asl:1.9.13
-include mvn:org.kevoree:org.kevoree.model:3.1.3
-include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
-include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.7
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
-include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.4
-add node0 : JavaNode/3.1.4
+include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.7
+include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
+include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.6-SNAPSHOT
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.6-SNAPSHOT
+add node0 : JavaNode/3.1.6-SNAPSHOT
+set node0.log = "INFO"
 set node0.started = "true"
-add node0.CompTrim605 : CompTrim/1.0-SNAPSHOT
-set node0.CompTrim605.started = "true"
-add node0.CompThres963 : CompThresholdLower/1.0-SNAPSHOT
-set node0.CompThres963.started = "true"
-add node0.CslThrHigh : ToyConsole/3.1.4
-set node0.CslThrHigh.showInTab = "true"
-set node0.CslThrHigh.started = "true"
-add node0.CslFreq : ToyConsole/3.1.4
+add node0.CompThres485 : CompThresholdLower/1.0-SNAPSHOT
+set node0.CompThres485.threshold = "6"
+set node0.CompThres485.started = "true"
+add node0.CompTrim970 : CompTrim/1.0-SNAPSHOT
+set node0.CompTrim970.started = "true"
+add node0.CompGauss799 : CompGaussianNoise/1.0-SNAPSHOT
+set node0.CompGauss799.started = "true"
+add node0.CslFreq : ToyConsole/3.1.6-SNAPSHOT
 set node0.CslFreq.showInTab = "true"
 set node0.CslFreq.started = "true"
-add node0.CompThres775 : CompThresholdHigher/1.0-SNAPSHOT
-set node0.CompThres775.started = "true"
-add node0.CompFreqR623 : CompFreqReducer/1.0-SNAPSHOT
-set node0.CompFreqR623.started = "true"
-add node0.CslSensor : ToyConsole/3.1.4
+add node0.CslThrLower : ToyConsole/3.1.6-SNAPSHOT
+set node0.CslThrLower.showInTab = "true"
+set node0.CslThrLower.started = "true"
+add node0.CompFreqR817 : CompFreqReducer/1.0-SNAPSHOT
+set node0.CompFreqR817.timewindow = "900000"
+set node0.CompFreqR817.started = "true"
+add node0.CslSensor : ToyConsole/3.1.6-SNAPSHOT
 set node0.CslSensor.showInTab = "true"
 set node0.CslSensor.started = "true"
-add node0.CslTrim : ToyConsole/3.1.4
+add node0.CslTrim : ToyConsole/3.1.6-SNAPSHOT
 set node0.CslTrim.showInTab = "true"
 set node0.CslTrim.started = "true"
-add node0.CslGauss : ToyConsole/3.1.4
+add node0.Sensor988 : Sensor/1.0-SNAPSHOT
+set node0.Sensor988.id = "1"
+set node0.Sensor988.startDay = "5"
+set node0.Sensor988.periodInMs = "2000"
+set node0.Sensor988.stepInMin = "5"
+set node0.Sensor988.type = "Temperature"
+set node0.Sensor988.started = "true"
+add node0.CslThrHigh : ToyConsole/3.1.6-SNAPSHOT
+set node0.CslThrHigh.showInTab = "true"
+set node0.CslThrHigh.started = "true"
+add node0.CslGauss : ToyConsole/3.1.6-SNAPSHOT
 set node0.CslGauss.showInTab = "true"
 set node0.CslGauss.started = "true"
-add node0.CslAvg : ToyConsole/3.1.4
-set node0.CslAvg.showInTab = "true"
-set node0.CslAvg.started = "true"
-add node0.CompAvera615 : CompAveraging/1.0-SNAPSHOT
-set node0.CompAvera615.started = "true"
-add node0.CompGauss192 : CompGaussianNoise/1.0-SNAPSHOT
-set node0.CompGauss192.started = "true"
-add node0.Sensor269 : Sensor/1.0-SNAPSHOT
-set node0.Sensor269.started = "true"
-add node0.CslThrLow : ToyConsole/3.1.4
-set node0.CslThrLow.showInTab = "true"
-set node0.CslThrLow.started = "true"
-add AsyncBroa157 : AsyncBroadcast/3.1.4
-set AsyncBroa157.started = "true"
-add AsyncBroa890 : AsyncBroadcast/3.1.4
-set AsyncBroa890.started = "true"
-add AsyncBroa915 : AsyncBroadcast/3.1.4
-set AsyncBroa915.started = "true"
-add AsyncBroa525 : AsyncBroadcast/3.1.4
-set AsyncBroa525.started = "true"
-add AsyncBroa684 : AsyncBroadcast/3.1.4
-set AsyncBroa684.started = "true"
-add AsyncBroa558 : AsyncBroadcast/3.1.4
-set AsyncBroa558.started = "true"
-add AsyncBroa59 : AsyncBroadcast/3.1.4
-set AsyncBroa59.started = "true"
-add sync : WSGroup/3.1.4
+add node0.CompThres43 : CompThresholdHigher/1.0-SNAPSHOT
+set node0.CompThres43.started = "true"
+add node0.CompAvera599 : CompAveraging/1.0-SNAPSHOT
+set node0.CompAvera599.timewindow = "900000"
+set node0.CompAvera599.started = "true"
+add node0.CslAveraging : ToyConsole/3.1.6-SNAPSHOT
+set node0.CslAveraging.showInTab = "true"
+set node0.CslAveraging.started = "true"
+add AsyncBroa182 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa182.started = "true"
+add AsyncBroa448 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa448.started = "true"
+add AsyncBroa793 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa793.started = "true"
+add AsyncBroa336 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa336.started = "true"
+add AsyncBroa877 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa877.started = "true"
+add AsyncBroa198 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa198.started = "true"
+add AsyncBroa275 : AsyncBroadcast/3.1.6-SNAPSHOT
+set AsyncBroa275.started = "true"
+add sync : WSGroup/3.1.6-SNAPSHOT
 set sync.started = "true"
-bind node0.CslThrLow.showText AsyncBroa525
-bind node0.CompFreqR623.sensorIn AsyncBroa915
-bind node0.CslSensor.showText AsyncBroa915
-bind node0.CompThres775.blurringOut AsyncBroa890
-bind node0.CompThres775.sensorIn AsyncBroa915
-bind node0.CompTrim605.sensorIn AsyncBroa915
-bind node0.CslTrim.showText AsyncBroa157
-bind node0.CompTrim605.blurringOut AsyncBroa157
-bind node0.CslGauss.showText AsyncBroa684
-bind node0.CslThrHigh.showText AsyncBroa890
-bind node0.CompAvera615.sensorIn AsyncBroa915
-bind node0.CompFreqR623.blurringOut AsyncBroa558
-bind node0.CompGauss192.sensorIn AsyncBroa915
-bind node0.CompGauss192.blurringOut AsyncBroa684
-bind node0.CslFreq.showText AsyncBroa558
-bind node0.CompThres963.blurringOut AsyncBroa525
-bind node0.Sensor269.sensorOut AsyncBroa915
-bind node0.CslAvg.showText AsyncBroa59
-bind node0.CompAvera615.blurringOut AsyncBroa59
-bind node0.CompThres963.sensorIn AsyncBroa915
+set AsyncBroa793.clone = "true"
+bind node0.CompAvera599.blurringOut AsyncBroa336
+bind node0.CslFreq.showText AsyncBroa198
+bind node0.CslSensor.showText AsyncBroa793
+bind node0.Sensor988.sensorOut AsyncBroa793
+bind node0.CslThrLower.showText AsyncBroa182
+bind node0.CompFreqR817.blurringOut AsyncBroa198
+bind node0.CompGauss799.blurringOut AsyncBroa877
+bind node0.CompThres485.blurringOut AsyncBroa182
+bind node0.CslAveraging.showText AsyncBroa336
+bind node0.CompThres485.sensorIn AsyncBroa793
+bind node0.CompFreqR817.sensorIn AsyncBroa793
+bind node0.CompTrim970.blurringOut AsyncBroa448
+bind node0.CompTrim970.sensorIn AsyncBroa793
+bind node0.CompThres43.blurringOut AsyncBroa275
+bind node0.CompGauss799.sensorIn AsyncBroa793
+bind node0.CslGauss.showText AsyncBroa877
+bind node0.CslThrHigh.showText AsyncBroa275
+bind node0.CompAvera599.sensorIn AsyncBroa793
+bind node0.CslTrim.showText AsyncBroa448
+bind node0.CompThres43.sensorIn AsyncBroa793
 attach node0 sync

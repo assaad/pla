@@ -1,28 +1,37 @@
 repo "http://repo1.maven.org/maven2/"
-include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.4
-include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.4
-include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.4
-include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
+include mvn:org.codehaus.jackson:jackson-core-asl:1.9.13
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.9
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:3.1.5
+include mvn:org.kevoree.kcl:org.kevoree.kcl:6
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.4
+include mvn:org.kevoree:org.kevoree.maven.resolver:15
+include mvn:org.kevoree:org.kevoree.api:3.1.9
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
-include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.4
-
-
-add node0 : JavaNode/3.1.4
+include mvn:org.kevoree.log:org.kevoree.log:1
+include mvn:org.java-websocket:Java-WebSocket:1.3.0
+include mvn:org.kevoree:org.kevoree.model:3.1.9
+include mvn:org.json:json:20090211
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.1.5
+include mvn:fr.inria.jfilter:jfilter-library:1.3
+include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.1673
+include mvn:org.codehaus.jackson:jackson-mapper-asl:1.9.13
+include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.7
+include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
+include mvn:org.kevoree.library.java:org.kevoree.library.java.toys:3.1.5
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.1.5
+add node0 : JavaNode/3.1.5
+set node0.log = "INFO"
 set node0.started = "true"
-add node0.Sensor356 : Sensor/1.0-SNAPSHOT
-set node0.Sensor356.id = "1"
-set node0.Sensor356.startDay = "5"
-set node0.Sensor356.periodInMs = "2000"
-set node0.Sensor356.stepInMin = "5"
-set node0.Sensor356.type = "Temperature"
-set node0.Sensor356.started = "true"
-add sync : WSGroup/3.1.4
+add node0.Sensor988 : Sensor/1.0-SNAPSHOT
+set node0.Sensor988.started = "true"
+add node0.CslSensor : ToyConsole/3.1.5
+set node0.CslSensor.showInTab = "true"
+set node0.CslSensor.started = "true"
+add AsyncBroa793 : AsyncBroadcast/3.1.5
+set AsyncBroa793.started = "true"
+add sync : WSGroup/3.1.5
 set sync.started = "true"
-add node0.Sensor1Console : ToyConsole
-set node0.Sensor1Console.showInTab = "true"
-set node0.Sensor1Console.started = "true"
-add AsyncBroa729 : AsyncBroadcast
-set AsyncBroa729.started = "true"
-bind node0.Sensor1Console.showText AsyncBroa729
-bind node0.Sensor356.sensorOut AsyncBroa729
+bind node0.Sensor988.sensorOut AsyncBroa793
+bind node0.CslSensor.showText AsyncBroa793
 attach node0 sync
