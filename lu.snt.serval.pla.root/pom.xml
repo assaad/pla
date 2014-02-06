@@ -79,6 +79,13 @@
             <id>oss-snapshot</id>
             <url>http://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+
+        <repository>
+            <id>oss-public</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+
+
         <repository>
             <id>oss-release</id>
             <url>http://oss.sonatype.org/content/repositories/releases</url>
