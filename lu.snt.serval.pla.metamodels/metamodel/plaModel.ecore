@@ -9,6 +9,8 @@
         eType="#//SensorKind" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="blurrings" upperBound="-1"
         eType="#//Blurring" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="architecture" eType="#//Architecture"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SensorKind">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -21,7 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="impact" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sensors" upperBound="-1"
         eType="#//SensorKind" eOpposite="#//SensorKind/risks"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="counterMeasures" upperBound="-1"
@@ -36,14 +38,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="blurring" lowerBound="1"
         eType="#//Blurring"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="setting" lowerBound="1"
-        eType="#//Setting" containment="true"/>
+        eType="#//RiskReductionProfile" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Blurring">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramMin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramMax" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDouble" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Setting">
+  <eClassifiers xsi:type="ecore:EClass" name="RiskReductionProfile">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paramValue0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="impact0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -54,5 +59,15 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Profile">
     <eLiterals name="Linear"/>
     <eLiterals name="Exponential" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Chain">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensor" lowerBound="1"
+        eType="#//SensorKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blurringList" upperBound="-1"
+        eType="#//Blurring"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Architecture">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chains" upperBound="-1"
+        eType="#//Chain" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

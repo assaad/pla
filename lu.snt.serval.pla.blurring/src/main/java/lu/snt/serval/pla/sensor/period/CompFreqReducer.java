@@ -1,6 +1,6 @@
-package lu.snt.serval.pla.blurring.period;
+package lu.snt.serval.pla.sensor.period;
 
-import lu.snt.serval.pla.blurring.SensorValue;
+import lu.snt.serval.pla.sensor.SensorValue;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
@@ -30,7 +30,7 @@ public class CompFreqReducer extends FreqReducer {
         else
         {
             SensorValue newElem = (SensorValue) o;
-            if((newElem.getTime()-previous.getTime())>=timewindow)
+            if((newElem.getTime()-previous.getTime())>=(int) value)
             {
                 previous=newElem;
                 blurringOut.send(previous);

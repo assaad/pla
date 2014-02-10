@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
 import org.kevoree.annotation.Param;
 
@@ -10,6 +10,12 @@ import org.kevoree.annotation.Param;
  * assaad.mouawad@gmail.com
  */
 public abstract class Noise extends ValueBlurring {
-    @Param(defaultValue = "1")
-    double variance = 1;
+
+    public Noise()
+    {
+        paramName="variance";
+        min=0;
+        max=2;
+        value=1.2;
+    }
 }

@@ -1,0 +1,41 @@
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
+include mvn:org.codehaus.jackson:jackson-core-asl:1.9.13
+include mvn:org.kevoree.kcl:org.kevoree.kcl:7
+include mvn:org.kevoree:org.kevoree.annotation.api:3.1.4
+include mvn:org.objenesis:objenesis:1.2
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
+include mvn:org.kevoree.log:org.kevoree.log:1
+include mvn:org.json:json:20090211
+include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:1.9.11
+include mvn:uk.com.robust-it:cloning:1.9.0
+include mvn:org.kevoree:org.kevoree.api:3.4.0
+include mvn:fr.inria.jfilter:jfilter-library:1.3
+include mvn:org.codehaus.jackson:jackson-mapper-asl:1.9.13
+include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.6.1673
+include mvn:org.kevoree:org.kevoree.model:3.4.0
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
+include mvn:org.jetbrains.kotlin:kotlin-runtime:0.6.1673
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:3.4.0
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:3.4.0
+include mvn:org.kevoree:org.kevoree.annotation.api:3.4.0
+add node0 : JavaNode/3.4.0
+set node0.started = "true"
+add node0.SensorGat882 : SensorGateway/1.0-SNAPSHOT
+set node0.SensorGat882.started = "true"
+add node0.Sensor22 : Sensor/1.0-SNAPSHOT
+set node0.Sensor22.started = "true"
+add node0.CompTrim363 : CompTrim/1.0-SNAPSHOT
+set node0.CompTrim363.min = "0"
+set node0.CompTrim363.max = "2"
+set node0.CompTrim363.value = "1"
+set node0.CompTrim363.paramName = "paramName"
+set node0.CompTrim363.isDouble = "true"
+set node0.CompTrim363.started = "true"
+add AsyncBroa836 : AsyncBroadcast/3.4.0
+set AsyncBroa836.started = "true"
+add AsyncBroa891 : AsyncBroadcast/3.4.0
+set AsyncBroa891.started = "true"
+bind node0.Sensor22.sensorOut AsyncBroa836
+bind node0.CompTrim363.blurringOut AsyncBroa891
+bind node0.SensorGat882.in AsyncBroa891
+bind node0.CompTrim363.sensorIn AsyncBroa836

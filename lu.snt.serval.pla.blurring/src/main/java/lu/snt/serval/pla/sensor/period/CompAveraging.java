@@ -1,6 +1,6 @@
-package lu.snt.serval.pla.blurring.period;
+package lu.snt.serval.pla.sensor.period;
 
-import lu.snt.serval.pla.blurring.SensorValue;
+import lu.snt.serval.pla.sensor.SensorValue;
 import org.kevoree.annotation.*;
 import org.kevoree.log.Log;
 
@@ -36,7 +36,7 @@ public class CompAveraging extends Averaging {
             }
             else
             {
-                if((signal.getTime()-ls.get(0).getTime())>timewindow)
+                if((signal.getTime()-ls.get(0).getTime())>(int)value)
                 {
                     //Do the average and send it
 

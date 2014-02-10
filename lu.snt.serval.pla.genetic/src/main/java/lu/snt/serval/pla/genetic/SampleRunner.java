@@ -1,57 +1,121 @@
-import lu.snt.serval.pla.*;
-import lu.snt.serval.pla.genetic.DomainConfiguration;
-import lu.snt.serval.pla.genetic.RiskCalculation;
-import lu.snt.serval.pla.impl.DefaultPlaFactory;
-
-import java.util.ArrayList;
-import java.util.List;
+package lu.snt.serval.pla.genetic;
 
 /**
- * Created by assaad.moawad on 1/21/14.
+ * User: assaad.moawad
+ * Date: 2/7/14
+ * Time: ${Time}
+ * University of Luxembourg - Snt
+ * assaad.mouawad@gmail.com
  */
-public class AbstractTest {
+import lu.snt.serval.pla.*;
+import lu.snt.serval.pla.genetic.fitnesses.NbrOfBlurFitness;
+import lu.snt.serval.pla.genetic.fitnesses.RiskFitness;
+import lu.snt.serval.pla.genetic.mutators.AddBlurMutator;
+import lu.snt.serval.pla.genetic.mutators.ChangeBlurSettingMutator;
+import lu.snt.serval.pla.genetic.mutators.DeleteBlurMutator;
+import lu.snt.serval.pla.impl.DefaultPlaFactory;
+import org.kevoree.ContainerRoot;
+import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
+import org.kevoree.modeling.optimization.api.solution.Solution;
+import org.kevoree.modeling.optimization.engine.genetic.GeneticAlgorithm;
+import org.kevoree.modeling.optimization.engine.genetic.GeneticEngine;
+import org.kevoree.modeling.optimization.framework.SolutionPrinter;
 
-    private static DefaultPlaFactory factory = new DefaultPlaFactory();
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
-    private static Domain domain;
+/**
+ * Created with IntelliJ IDEA.
+ * User: duke
+ * Date: 07/08/13
+ * Time: 16:00
+ */
+public class SampleRunner {
 
-    public static void init()
+
+    public static Domain init()
     {
+        DefaultPlaFactory factory = new DefaultPlaFactory();
+        Domain domain;
+
         domain = factory.createDomain();
-        domain.setName("Abstract Test");
+        domain.setName("AAL Test");
 
 
         ///Set up possible sensor
         Blurring blrTrim = factory.createBlurring();
-        blrTrim.setName("Trim");
+        blrTrim.setName("CompTrim");
+        blrTrim.setIsDouble(false);
+        blrTrim.setParamMin(1.0);
+        blrTrim.setParamMax(8.0);
+        blrTrim.setParamValue(4.0);
+        blrTrim.setParamName("digit");
         domain.addBlurrings(blrTrim);
 
         Blurring blrThresholdLower= factory.createBlurring();
-        blrThresholdLower.setName("ThresholdLower");
+        blrThresholdLower.setName("CompThresholdLower");
+        blrThresholdLower.setIsDouble(true);
+        blrThresholdLower.setParamMin(0.0);
+        blrThresholdLower.setParamMax(30.0);
+        blrThresholdLower.setParamValue(8.0);
+        blrThresholdLower.setParamName("threshold");
         domain.addBlurrings(blrThresholdLower);
 
         Blurring blrThresholdGreater= factory.createBlurring();
-        blrThresholdGreater.setName("ThresholdGreater");
+        blrThresholdGreater.setName("CompThresholdGreater");
+        blrThresholdGreater.setIsDouble(true);
+        blrThresholdGreater.setParamMin(0.0);
+        blrThresholdGreater.setParamMax(30.0);
+        blrThresholdGreater.setParamValue(8.0);
+        blrThresholdGreater.setParamName("threshold");
         domain.addBlurrings(blrThresholdGreater);
 
         Blurring blrThresholdNoise= factory.createBlurring();
-        blrThresholdNoise.setName("ThresholdNoise");
+        blrThresholdNoise.setName("CompThresholdNoise");
+        blrThresholdNoise.setIsDouble(true);
+        blrThresholdNoise.setParamMin(0.0);
+        blrThresholdNoise.setParamMax(3.0);
+        blrThresholdNoise.setParamValue(1.0);
+        blrThresholdNoise.setParamName("variance");
         domain.addBlurrings(blrThresholdNoise);
 
         Blurring blrFreqReducer= factory.createBlurring();
-        blrFreqReducer.setName("FreqReducer");
+        blrFreqReducer.setName("CompFreqReducer");
+        blrFreqReducer.setIsDouble(false);
+        blrFreqReducer.setParamMin(1.0);
+        blrFreqReducer.setParamMax(24*3600*1000.0);
+        blrFreqReducer.setParamValue(15*60*1000.0);
+        blrFreqReducer.setParamName("timewindow");
         domain.addBlurrings(blrFreqReducer);
 
         Blurring blrAveraging= factory.createBlurring();
-        blrAveraging.setName("Averaging");
+        blrAveraging.setName("CompAveraging");
+        blrAveraging.setIsDouble(false);
+        blrAveraging.setParamMin(1.0);
+        blrAveraging.setParamMax(24*3600*1000.0);
+        blrAveraging.setParamValue(15*60*1000.0);
+        blrAveraging.setParamName("timewindow");
         domain.addBlurrings(blrAveraging);
 
 
         //Setup Sensor A
         SensorKind sensorA = factory.createSensorKind();
-        sensorA.setId("sensorA");
-        sensorA.setType("sensorA");
+        sensorA.setId("1");
+        sensorA.setType("Temperature");
         domain.addSensors(sensorA);
+
+        //Setup Sensor B
+        SensorKind sensorB = factory.createSensorKind();
+        sensorB.setId("2");
+        sensorB.setType("Humidity");
+        domain.addSensors(sensorB);
+
+        //Setup Sensor A
+        SensorKind sensorC = factory.createSensorKind();
+        sensorC.setId("3");
+        sensorC.setType("HeartRate");
+        domain.addSensors(sensorC);
 
         //Setup 3 risks on Sensor A
         Risk risk0=factory.createRisk();
@@ -64,13 +128,13 @@ public class AbstractTest {
         risk1.setId("risk1");
         risk1.setDescription("Risk 1");
         risk1.setWeight(1);
-        sensorA.addRisks(risk1);
+        sensorB.addRisks(risk1);
 
         Risk risk2=factory.createRisk();
         risk2.setId("risk2");
         risk2.setDescription("Risk 2");
         risk2.setWeight(1);
-        sensorA.addRisks(risk2);
+        sensorC.addRisks(risk2);
 
         //Setup 3 countermeasures for risk 0
         CounterMeasure cm00 = factory.createCounterMeasure();
@@ -200,23 +264,46 @@ public class AbstractTest {
         setting22.setProfile(Profile.LINEAR);
         cm22.setSetting(setting22);
         cm22.setRisk(risk2);
+        return domain;
     }
 
-    public static void main(String [] args) {
-        init();
-        DomainConfiguration.setDomain(domain);
 
-        List<Blurring> lb=new ArrayList<Blurring>();
 
-       Blurring bc = factory.createBlurring();
-        bc.setName("Trim");
-        bc.setParamName("digit");
-        bc.setParamValue(5.0);
-        lb.add(bc);
+    public static void main(String[] args) throws Exception {
+        DomainConfiguration.setDomain(SampleRunner.init());
+        GeneticEngine<ContainerRoot> engine = new GeneticEngine<ContainerRoot>();
+        engine.addOperator(new AddBlurMutator());
+        engine.addOperator(new ChangeBlurSettingMutator());
+        engine.addOperator(new DeleteBlurMutator());
 
-        double risk = RiskCalculation.calculateRiskOnSensor("sensorA",lb);
-        System.out.println(risk);
+        engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
+
+
+        engine.addFitnessFuntion(new NbrOfBlurFitness());
+        engine.addFitnessFuntion(new RiskFitness());
+        engine.setMaxGeneration(1000)  ;
+        engine.setPopulationFactory(new DefaultPopulation().setSize(30));
+
+        long startTime = System.nanoTime();
+        List<Solution<ContainerRoot>> result = engine.solve();
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+
+        for (Solution sol : result) {
+            Set af  = sol.getFitnesses();
+            Iterator iter = af.iterator();
+            while (iter.hasNext())
+            {
+                FitnessFunction tf= (FitnessFunction) iter.next();
+                System.out.print(tf.getClass().getName()+" "+ sol.getScoreForFitness(tf)+" ");
+            }
+            System.out.println();
+        }
+        System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
 
 
     }
+
+
+
 }

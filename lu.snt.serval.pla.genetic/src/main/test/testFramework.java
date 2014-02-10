@@ -1,4 +1,5 @@
 import lu.snt.serval.pla.*;
+import lu.snt.serval.pla.genetic.DomainConfiguration;
 import lu.snt.serval.pla.genetic.RiskCalculation;
 import lu.snt.serval.pla.impl.DefaultPlaFactory;
 
@@ -30,7 +31,7 @@ public class testFramework {
     Risk risk0=factory.createRisk();
     risk0.setId("risk0");
     risk0.setDescription("Detection of presence of person in the room");
-    risk0.setImpact(1);         //WHAt is impact ???
+    risk0.setWeight(1);         //WHAt is impact ???
    //domain.addRisks(risk0);
     sensor0.addRisks(risk0);
 
@@ -38,7 +39,7 @@ public class testFramework {
     cm.setId("CM0");
     cm.setDescription("Reducing precision of the sensor");
 
-    Setting setting0= factory.createSetting();
+    RiskReductionProfile setting0= factory.createRiskReductionProfile();
     setting0.setParamName("digit");
     setting0.setParamValue0(1.0);
     setting0.setImpact0(1.0);
@@ -57,7 +58,8 @@ public class testFramework {
 
     public static void main(String [] args) {
         init();
-        RiskCalculation rc= new RiskCalculation(domain);
+
+        DomainConfiguration.setDomain(domain);
 
         List<Blurring> lb=new ArrayList<Blurring> ();
 
@@ -67,7 +69,7 @@ public class testFramework {
         bc.setParamValue(5.0);
         lb.add(bc);
 
-        double risk = rc.calculateRiskOnSensor("sensor0",lb);
+        double risk = RiskCalculation.calculateRiskOnSensor("sensor0",lb);
         System.out.println(risk);
 
 

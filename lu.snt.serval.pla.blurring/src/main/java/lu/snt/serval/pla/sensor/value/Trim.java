@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
 import org.kevoree.annotation.Param;
 
@@ -10,6 +10,11 @@ import org.kevoree.annotation.Param;
  * assaad.mouawad@gmail.com
  */
 public abstract class Trim extends ValueBlurring {
-    @Param(defaultValue = "2")
-    int digit =2;
+    Trim(){
+        paramName="trim";
+        value=2;
+        min=1;
+        max=6;
+        isDouble=false;
+    }
 }

@@ -1,10 +1,8 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
-import lu.snt.serval.pla.blurring.SensorValue;
+import lu.snt.serval.pla.sensor.SensorValue;
 import org.kevoree.annotation.ComponentType;
-import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
-import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
 
 import java.math.BigDecimal;
@@ -32,16 +30,16 @@ public class CompTrim extends Trim {
 
 
            SensorValue signal = (SensorValue) o;
-           signal.setValue(round(signal.getValue(),digit));
+           signal.setValue(round(signal.getValue(),(int) value));
 
           /* TrimBlurring tb= BlurringComp.factory.createTrimBlurring();
            tb.setPrecision(digits);
 
 
-           //Add information about the current blurring
+           //Add information about the current sensor
            signal.addBlurrings(tb);
                                     */
-           //Add information about the current blurring
+           //Add information about the current sensor
            // signal.addBlurrings();
 
            blurringOut.send(signal);

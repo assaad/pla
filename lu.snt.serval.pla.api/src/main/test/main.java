@@ -1,4 +1,4 @@
-import lu.snt.serval.pla.blurring.SensorValue;
+import lu.snt.serval.pla.sensor.SensorValue;
 
 import java.util.Date;
 

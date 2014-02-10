@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.blurring.period;
+package lu.snt.serval.pla.sensor.period;
 
 /**
  * User: assaad.moawad

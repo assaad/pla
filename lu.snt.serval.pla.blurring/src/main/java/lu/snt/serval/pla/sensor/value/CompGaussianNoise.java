@@ -1,10 +1,9 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
-import lu.snt.serval.pla.blurring.SensorValue;
+import lu.snt.serval.pla.sensor.SensorValue;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.Input;
 import org.kevoree.annotation.Library;
-import org.kevoree.annotation.Param;
 import org.kevoree.log.Log;
 
 /**
@@ -24,7 +23,7 @@ public class CompGaussianNoise extends Noise {
 
     @Input
     public void sensorIn(Object o) {
-        double noise = r.nextGaussian() * Math.sqrt(variance);
+        double noise = r.nextGaussian() * Math.sqrt(value);
          try {
              SensorValue signal = (SensorValue) o;
              signal.setValue(signal.getValue()+noise);

@@ -1,6 +1,6 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
-import lu.snt.serval.pla.blurring.Blurring;
+import lu.snt.serval.pla.sensor.Blurring;
 
 /**
  * User: assaad.moawad

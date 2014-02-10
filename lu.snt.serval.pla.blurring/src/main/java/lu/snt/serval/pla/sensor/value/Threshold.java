@@ -1,4 +1,4 @@
-package lu.snt.serval.pla.blurring.value;
+package lu.snt.serval.pla.sensor.value;
 
 import org.kevoree.annotation.Param;
 
@@ -10,6 +10,13 @@ import org.kevoree.annotation.Param;
  * assaad.mouawad@gmail.com
  */
 public abstract class Threshold extends ValueBlurring {
-    @Param(defaultValue = "6")
-    double threshold =6;
+
+    Threshold()
+    {
+        paramName="threshold";
+        value=50;
+        min=0;
+        max=100;
+        isDouble=true;
+    }
 }

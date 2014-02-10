@@ -1,15 +1,9 @@
 package lu.snt.serval.pla.genetic;
 
-import jet.runtime.typeinfo.JetValueParameter;
 import lu.snt.serval.pla.*;
-import lu.snt.serval.pla.impl.DefaultPlaFactory;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.kevoree.modeling.api.KMFContainer;
-import org.omg.DynamicAny._DynAnyFactoryStub;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * User: assaad.moawad
@@ -18,16 +12,10 @@ import java.util.*;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-public class RiskCalculation {
-     private static DefaultPlaFactory factory = new DefaultPlaFactory();
-    private Domain domain;
+public class RiskCalculation extends DomainConfiguration {
 
-    public RiskCalculation(Domain domain)
-    {
-        this.domain=domain;
-    }
 
-    private double calculateImpact1cm(Setting setting, Blurring blurring)
+    private static double calculateImpact1cm(RiskReductionProfile setting, Blurring blurring)
     {
         if(blurring.getParamName().equals(setting.getParamName()))
         {
@@ -69,7 +57,7 @@ public class RiskCalculation {
     }
 
 
-    private SensorKind getSensorById(String sensorId)
+    private static SensorKind getSensorById(String sensorId)
     {
         if(domain.getSensors().size()==0)
             return null;
@@ -85,7 +73,7 @@ public class RiskCalculation {
     }
 
 
-    private Blurring findBlurringByName( List<Blurring> blrList,  String name)
+    private  static Blurring findBlurringByName( List<Blurring> blrList,  String name)
     {
       Iterator blurIterator = blrList.iterator();
         while (blurIterator.hasNext())
@@ -99,7 +87,7 @@ public class RiskCalculation {
 
 
 
-    private double calculateRisk(Risk risk, List<Blurring> blrList)
+    private static double calculateRisk(Risk risk, List<Blurring> blrList)
     {
         List<CounterMeasure> lc = risk.getCounterMeasures();
         if(lc.size()==0|| blrList.size()==0)
@@ -120,7 +108,7 @@ public class RiskCalculation {
         return minRisk;
     }
 
-    public double calculateRiskOnSensor(String sensorId, List<Blurring> blrList)
+    public static double calculateRiskOnSensor(String sensorId, List<Blurring> blrList)
     {
         SensorKind sensorKind = getSensorById(sensorId);
         if(sensorKind==null)
@@ -136,12 +124,24 @@ public class RiskCalculation {
         while (riskIterator.hasNext())
         {
             Risk risk = (Risk) riskIterator.next();
-            totalWeight+= risk.getImpact();
-            finalrisk += risk.getImpact()*calculateRisk(risk, blrList);
+            totalWeight+= risk.getWeight();
+            finalrisk += risk.getWeight()*calculateRisk(risk, blrList);
         }
         finalrisk = finalrisk/totalWeight;
         return finalrisk;
 
+
+    }
+
+    public static double calculateRisk(Architecture current)
+    {
+        double risk=0;
+
+        for(Chain c: current.getChains())
+        {
+            risk+= calculateRiskOnSensor(c.getSensor().getId(),c.getBlurringList());
+        }
+        return risk/current.getChains().size();
 
     }
 }
