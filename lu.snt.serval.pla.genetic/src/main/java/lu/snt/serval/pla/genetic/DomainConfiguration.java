@@ -165,6 +165,7 @@ public class DomainConfiguration {
                         b.setParamMax(Double.parseDouble((next.getDictionary().findValuesByID("max").getValue())));
                         b.setParamValue(Double.parseDouble((next.getDictionary().findValuesByID("value").getValue())));
                         b.setIsDouble(next.getDictionary().findValuesByID("isDouble").getValue().toString().equals("true"));
+                        b.setExecTime(Integer.decode(next.getDictionary().findValuesByID("execTime").getValue()));
                         chain.addBlurringList(b);
                         break;
 

@@ -18,5 +18,6 @@ public abstract class PeriodBlurring extends Blurring{
         min=5;
         max=3600*1000;
         value= 15*60*1000;
+
     }
 }

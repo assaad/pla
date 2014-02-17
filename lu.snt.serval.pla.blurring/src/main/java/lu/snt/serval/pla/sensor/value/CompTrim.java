@@ -29,6 +29,7 @@ public class CompTrim extends Trim {
        try {
 
 
+
            SensorValue signal = (SensorValue) o;
            signal.setValue(round(signal.getValue(),(int) value));
 

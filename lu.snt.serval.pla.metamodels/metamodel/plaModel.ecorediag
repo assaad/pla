@@ -123,6 +123,10 @@
         <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/isDouble"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_7wE78pI-EeOJtuKQNymXbg"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_fdk18ZfsEeOb2JBjo0IU5g" type="2001">
+        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/execTime"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_fdk18pfsEeOb2JBjo0IU5g"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_4bhAMYGxEeOoQLjTU_QUww"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_4bhAMoGxEeOoQLjTU_QUww"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_4bhAM4GxEeOoQLjTU_QUww"/>

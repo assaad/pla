@@ -7,8 +7,8 @@
     <relativePath>../lu.snt.serval.pla.root/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>lu.snt.serval.pla.framework</artifactId>
-  <name>Serval :: PLA :: Framework</name>
+  <artifactId>lu.snt.serval.pla.genetic</artifactId>
+  <name>Serval :: PLA :: GENETIC</name>
   <build>
     <plugins>
       <plugin>
@@ -50,9 +50,39 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>org.kevoree.modeling.optimization</groupId>
+      <artifactId>org.kevoree.modeling.optimization.framework.core</artifactId>
+      <version>2.0.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kevoree</groupId>
+      <artifactId>org.kevoree.model</artifactId>
+      <version>3.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kevoree</groupId>
+      <artifactId>org.kevoree.kevscript</artifactId>
+      <version>3.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kevoree.modeling.optimization</groupId>
+      <artifactId>org.kevoree.modeling.optimization.engine.genetic</artifactId>
+      <version>2.0.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kevoree.modeling.optimization</groupId>
+      <artifactId>org.kevoree.modeling.optimization.framework.web</artifactId>
+      <version>2.0.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.kevoree</groupId>
       <artifactId>org.kevoree.annotation.api</artifactId>
-      <version>3.1.3</version>
+      <version>3.1.4</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

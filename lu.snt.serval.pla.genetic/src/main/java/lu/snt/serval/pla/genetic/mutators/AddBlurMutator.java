@@ -75,6 +75,8 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
                 engine.execute(command,model);
                 command = "set node0."+compName+".paramName = \""+toAdd.getParamName()+"\"";
                 engine.execute(command,model);
+                command = "set node0."+compName+".execTime = \""+toAdd.getExecTime()+"\"";
+                engine.execute(command,model);
                 if(toAdd.getIsDouble())
                     command = "set node0."+compName+".isDouble = \"true\"";
                 else

@@ -8,6 +8,7 @@ package lu.snt.serval.pla.genetic;
  * assaad.mouawad@gmail.com
  */
 import lu.snt.serval.pla.*;
+import lu.snt.serval.pla.genetic.fitnesses.ExecutionTime;
 import lu.snt.serval.pla.genetic.fitnesses.NbrOfBlurFitness;
 import lu.snt.serval.pla.genetic.fitnesses.RiskFitness;
 import lu.snt.serval.pla.genetic.mutators.AddBlurMutator;
@@ -51,6 +52,7 @@ public class SampleRunner {
         blrTrim.setParamMax(8.0);
         blrTrim.setParamValue(4.0);
         blrTrim.setParamName("digit");
+        blrTrim.setExecTime(5000);
         domain.addBlurrings(blrTrim);
 
         Blurring blrThresholdLower= factory.createBlurring();
@@ -60,6 +62,7 @@ public class SampleRunner {
         blrThresholdLower.setParamMax(30.0);
         blrThresholdLower.setParamValue(8.0);
         blrThresholdLower.setParamName("threshold");
+        blrThresholdLower.setExecTime(1000);
         domain.addBlurrings(blrThresholdLower);
 
         Blurring blrThresholdGreater= factory.createBlurring();
@@ -68,6 +71,7 @@ public class SampleRunner {
         blrThresholdGreater.setParamMin(0.0);
         blrThresholdGreater.setParamMax(30.0);
         blrThresholdGreater.setParamValue(8.0);
+        blrThresholdGreater.setExecTime(1000);
         blrThresholdGreater.setParamName("threshold");
         domain.addBlurrings(blrThresholdGreater);
 
@@ -77,6 +81,7 @@ public class SampleRunner {
         blrThresholdNoise.setParamMin(0.0);
         blrThresholdNoise.setParamMax(3.0);
         blrThresholdNoise.setParamValue(1.0);
+        blrThresholdNoise.setExecTime(10000);
         blrThresholdNoise.setParamName("variance");
         domain.addBlurrings(blrThresholdNoise);
 
@@ -86,6 +91,7 @@ public class SampleRunner {
         blrFreqReducer.setParamMin(1.0);
         blrFreqReducer.setParamMax(24*3600*1000.0);
         blrFreqReducer.setParamValue(15*60*1000.0);
+        blrFreqReducer.setExecTime(500);
         blrFreqReducer.setParamName("timewindow");
         domain.addBlurrings(blrFreqReducer);
 
@@ -93,9 +99,10 @@ public class SampleRunner {
         blrAveraging.setName("CompAveraging");
         blrAveraging.setIsDouble(false);
         blrAveraging.setParamMin(1.0);
-        blrAveraging.setParamMax(24*3600*1000.0);
-        blrAveraging.setParamValue(15*60*1000.0);
+        blrAveraging.setParamMax(24 * 3600 * 1000.0);
+        blrAveraging.setParamValue(15 * 60 * 1000.0);
         blrAveraging.setParamName("timewindow");
+        blrAveraging.setExecTime(6000);
         domain.addBlurrings(blrAveraging);
 
 
@@ -281,6 +288,7 @@ public class SampleRunner {
 
         engine.addFitnessFuntion(new NbrOfBlurFitness());
         engine.addFitnessFuntion(new RiskFitness());
+        engine.addFitnessFuntion(new ExecutionTime());
         engine.setMaxGeneration(1000)  ;
         engine.setPopulationFactory(new DefaultPopulation().setSize(30));
 

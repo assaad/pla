@@ -28,6 +28,9 @@ public abstract class Blurring {
     @Param(defaultValue = "1")
     public double value=1;
 
+    @Param(defaultValue =  "10000")
+    public int execTime=10000;
+
 
     @Input
     public abstract void sensorIn(Object o);
