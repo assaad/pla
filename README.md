@@ -1,4 +1,2 @@
-Privacy Level Agreement Project
+Privacy Aware Platform
 ===
-
-Privacy Level Agreement
