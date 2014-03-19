@@ -7,21 +7,27 @@ package lu.snt.serval.pla.genetic;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
+import kotlin._Assertions;
 import lu.snt.serval.pla.*;
 import lu.snt.serval.pla.genetic.fitnesses.ExecutionTime;
-import lu.snt.serval.pla.genetic.fitnesses.NbrOfBlurFitness;
 import lu.snt.serval.pla.genetic.fitnesses.RiskFitness;
+import lu.snt.serval.pla.genetic.fitnesses.UtilFitness;
 import lu.snt.serval.pla.genetic.mutators.AddBlurMutator;
 import lu.snt.serval.pla.genetic.mutators.ChangeBlurSettingMutator;
 import lu.snt.serval.pla.genetic.mutators.DeleteBlurMutator;
 import lu.snt.serval.pla.impl.DefaultPlaFactory;
 import org.kevoree.ContainerRoot;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
+import org.kevoree.modeling.optimization.api.metric.ParetoFitnessMetrics;
+import org.kevoree.modeling.optimization.api.metric.ParetoMetrics;
 import org.kevoree.modeling.optimization.api.solution.Solution;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticAlgorithm;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticEngine;
-import org.kevoree.modeling.optimization.framework.SolutionPrinter;
+import org.kevoree.modeling.optimization.executionmodel.ExecutionModel;
+import org.kevoree.modeling.optimization.util.ExecutionModelExporter;
+import org.kevoree.modeling.optimization.web.Server;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -52,7 +58,10 @@ public class SampleRunner {
         blrTrim.setParamMax(8.0);
         blrTrim.setParamValue(4.0);
         blrTrim.setParamName("digit");
-        blrTrim.setExecTime(5000);
+        blrTrim.setExecTimeMin(500);
+        blrTrim.setExecTimeMax(200);
+        blrTrim.setUtilMin(0.5);
+        blrTrim.setUtilMax(1.0);
         domain.addBlurrings(blrTrim);
 
         Blurring blrThresholdLower= factory.createBlurring();
@@ -62,7 +71,10 @@ public class SampleRunner {
         blrThresholdLower.setParamMax(30.0);
         blrThresholdLower.setParamValue(8.0);
         blrThresholdLower.setParamName("threshold");
-        blrThresholdLower.setExecTime(1000);
+        blrThresholdLower.setExecTimeMin(100);
+        blrThresholdLower.setExecTimeMax(100);
+        blrThresholdLower.setUtilMin(0.4);
+        blrThresholdLower.setUtilMax(1.0);
         domain.addBlurrings(blrThresholdLower);
 
         Blurring blrThresholdGreater= factory.createBlurring();
@@ -71,8 +83,11 @@ public class SampleRunner {
         blrThresholdGreater.setParamMin(0.0);
         blrThresholdGreater.setParamMax(30.0);
         blrThresholdGreater.setParamValue(8.0);
-        blrThresholdGreater.setExecTime(1000);
         blrThresholdGreater.setParamName("threshold");
+        blrThresholdGreater.setExecTimeMin(100);
+        blrThresholdGreater.setExecTimeMax(100);
+        blrThresholdGreater.setUtilMin(1.0);
+        blrThresholdGreater.setUtilMax(0.3);
         domain.addBlurrings(blrThresholdGreater);
 
         Blurring blrThresholdNoise= factory.createBlurring();
@@ -81,18 +96,24 @@ public class SampleRunner {
         blrThresholdNoise.setParamMin(0.0);
         blrThresholdNoise.setParamMax(3.0);
         blrThresholdNoise.setParamValue(1.0);
-        blrThresholdNoise.setExecTime(10000);
         blrThresholdNoise.setParamName("variance");
+        blrThresholdNoise.setExecTimeMin(500);
+        blrThresholdNoise.setExecTimeMax(3000);
+        blrThresholdNoise.setUtilMin(1.0);
+        blrThresholdNoise.setUtilMax(0.4);
         domain.addBlurrings(blrThresholdNoise);
 
         Blurring blrFreqReducer= factory.createBlurring();
         blrFreqReducer.setName("CompFreqReducer");
         blrFreqReducer.setIsDouble(false);
         blrFreqReducer.setParamMin(1.0);
-        blrFreqReducer.setParamMax(24*3600*1000.0);
-        blrFreqReducer.setParamValue(15*60*1000.0);
-        blrFreqReducer.setExecTime(500);
+        blrFreqReducer.setParamMax(24 * 3600 * 1000.0);
+        blrFreqReducer.setParamValue(15 * 60 * 1000.0);
         blrFreqReducer.setParamName("timewindow");
+        blrFreqReducer.setExecTimeMin(100);
+        blrFreqReducer.setExecTimeMax(3000);
+        blrFreqReducer.setUtilMin(1.0);
+        blrFreqReducer.setUtilMax(0.2);
         domain.addBlurrings(blrFreqReducer);
 
         Blurring blrAveraging= factory.createBlurring();
@@ -102,7 +123,10 @@ public class SampleRunner {
         blrAveraging.setParamMax(24 * 3600 * 1000.0);
         blrAveraging.setParamValue(15 * 60 * 1000.0);
         blrAveraging.setParamName("timewindow");
-        blrAveraging.setExecTime(6000);
+        blrAveraging.setExecTimeMin(100);
+        blrAveraging.setExecTimeMax(3000);
+        blrAveraging.setUtilMin(1.0);
+        blrAveraging.setUtilMax(0.2);
         domain.addBlurrings(blrAveraging);
 
 
@@ -286,11 +310,28 @@ public class SampleRunner {
         engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
 
 
-        engine.addFitnessFuntion(new NbrOfBlurFitness());
+        engine.addFitnessFuntion(new UtilFitness());
         engine.addFitnessFuntion(new RiskFitness());
         engine.addFitnessFuntion(new ExecutionTime());
         engine.setMaxGeneration(1000)  ;
-        engine.setPopulationFactory(new DefaultPopulation().setSize(30));
+        engine.setPopulationFactory(new DefaultPopulation().setSize(50));
+
+        //engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
+        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MIN);
+        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MAX);
+        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MEAN);
+
+        engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MIN);
+        engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MAX);
+        engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
+
+        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MIN);
+        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MAX);
+        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
+        //engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
+
+
+        engine.addParetoMetric(ParetoMetrics.HYPERVOLUME);
 
         long startTime = System.nanoTime();
         List<Solution<ContainerRoot>> result = engine.solve();
@@ -308,6 +349,11 @@ public class SampleRunner {
             System.out.println();
         }
         System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
+
+        ExecutionModel model = engine.getExecutionModel();
+        Server.instance$.serveExecutionModel(model);
+        ExecutionModelExporter.instance$.exportMetrics(model,new File("results"));
+
 
 
     }

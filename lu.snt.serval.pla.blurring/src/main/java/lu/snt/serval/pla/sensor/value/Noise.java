@@ -17,6 +17,5 @@ public abstract class Noise extends ValueBlurring {
         min=0;
         max=2;
         value=1.2;
-        execTime =10000;
     }
 }

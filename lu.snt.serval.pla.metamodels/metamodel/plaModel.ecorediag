@@ -124,8 +124,20 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_7wE78pI-EeOJtuKQNymXbg"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_fdk18ZfsEeOb2JBjo0IU5g" type="2001">
-        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/execTime"/>
+        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/execTimeMin"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_fdk18pfsEeOb2JBjo0IU5g"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_kaPpQa2uEeOBPopUDSOWKw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/execTimeMax"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_kaPpQq2uEeOBPopUDSOWKw"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_m2iFgK2uEeOBPopUDSOWKw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/utilMin"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_m2iFga2uEeOBPopUDSOWKw"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_pBpSMK2uEeOBPopUDSOWKw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="plaModel.ecore#//Blurring/utilMax"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_pBpSMa2uEeOBPopUDSOWKw"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_4bhAMYGxEeOoQLjTU_QUww"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_4bhAMoGxEeOoQLjTU_QUww"/>

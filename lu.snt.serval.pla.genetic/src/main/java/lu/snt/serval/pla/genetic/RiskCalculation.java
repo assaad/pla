@@ -108,11 +108,10 @@ public class RiskCalculation extends DomainConfiguration {
         return minRisk;
     }
 
-    public static double calculateRiskOnSensor(String sensorId, List<Blurring> blrList)
-    {
+    public static double calculateRiskOnSensor(String sensorId, List<Blurring> blrList) throws Exception {
         SensorKind sensorKind = getSensorById(sensorId);
         if(sensorKind==null)
-            return -1;
+            throw new Exception("Sensor null");
 
         List<Risk> lr = sensorKind.getRisks();
         if(lr.size()==0)
@@ -139,7 +138,12 @@ public class RiskCalculation extends DomainConfiguration {
 
         for(Chain c: current.getChains())
         {
-            risk+= calculateRiskOnSensor(c.getSensor().getId(),c.getBlurringList());
+            try {
+                risk+= calculateRiskOnSensor(c.getSensor().getId(),c.getBlurringList());
+            }
+            catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
         }
         return risk/current.getChains().size();
 

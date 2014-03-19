@@ -18,6 +18,5 @@ public abstract class Threshold extends ValueBlurring {
         min=0;
         max=100;
         isDouble=true;
-        execTime =1000;
     }
 }

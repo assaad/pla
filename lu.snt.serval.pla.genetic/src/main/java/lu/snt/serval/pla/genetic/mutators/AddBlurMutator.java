@@ -75,8 +75,7 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
                 engine.execute(command,model);
                 command = "set node0."+compName+".paramName = \""+toAdd.getParamName()+"\"";
                 engine.execute(command,model);
-                command = "set node0."+compName+".execTime = \""+toAdd.getExecTime()+"\"";
-                engine.execute(command,model);
+
                 if(toAdd.getIsDouble())
                     command = "set node0."+compName+".isDouble = \"true\"";
                 else
@@ -103,10 +102,8 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
                 command = "bind node0."+ compName+".sensorIn "  +channel.getName();
                 engine.execute(command,model);
 
-
                 String channel1;
                 channel1="AsyncBroa"+random.nextInt(10000);
-
 
                 command = "add "+channel1 +" : " +"AsyncBroadcast";
                 engine.execute(command,model);
@@ -119,10 +116,6 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
                 command = "bind node0."+ next.getName()+"."+next.getProvided().get(0).getPortTypeRef().getName() +" "  +channel1;
                 engine.execute(command,model);
                 //System.out.println("done");
-
-
-
-
 
             }
             catch (Exception ex)

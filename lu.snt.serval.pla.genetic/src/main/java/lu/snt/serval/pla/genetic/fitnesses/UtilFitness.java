@@ -19,70 +19,52 @@ import java.util.ArrayList;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-public class ExecutionTime extends DomainConfiguration implements FitnessFunction<ContainerRoot> {
+public class UtilFitness extends DomainConfiguration implements FitnessFunction<ContainerRoot> {
 
     @Override
     public double evaluate(@JetValueParameter(name = "model") @NotNull ContainerRoot model, @JetValueParameter(name = "context") @NotNull GenerationContext<ContainerRoot> containerRootGenerationContext) {
-
         ArrayList<ComponentInstance> ls = getSensors(model);
-        double localmax=0;
-        double cur=0;
-        String name="";
-        double value;
-
-
-        try{
+        double localmax=1;
+        double cur=1;
         for(ComponentInstance sensor: ls)
         {
-            cur=0;
+            cur=1;
             ArrayList<ComponentInstance> bl = getAttachedBlurComp(model,sensor);
             for(ComponentInstance blur:bl)
             {
-                name = blur.getTypeDefinition().getName();
-                value = Double.parseDouble(blur.getDictionary().findValuesByID("value").getValue());
-                cur+=getTime(name,value);
+                String name = blur.getTypeDefinition().getName();
+                double value = Double.parseDouble(blur.getDictionary().findValuesByID("value").getValue());
+                cur=cur*getUtil(name, value);
             }
-            if(cur>localmax)
+            if(cur<localmax)
                 localmax=cur;
         }
-
-        if(localmax>max())
-        {
-            localmax=max();
-        }
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Error in name " + name + " Ex:" + ex.getMessage());
-
-        }
-
         return localmax;
     }
 
-    private double getTime(String name, double value) {
+    private double getUtil(String name, double value) {
         for(Blurring b: domain.getBlurrings())
         {
             if(b.getName().equals(name))
             {
-                double aa= (b.getExecTimeMax()-b.getExecTimeMin())/(b.getParamMax()-b.getParamMin());
-                double bb= b.getExecTimeMax()-aa*b.getParamMax();
-                double time = aa*value+bb;
-                if(time<0)
-                    time=0;
-                if(time>max())
-                    return max();
-                return time;
+                double aa= (b.getUtilMax()-b.getUtilMin())/(b.getParamMax()-b.getParamMin());
+                double bb= b.getUtilMax()-aa*b.getParamMax();
+                double util = aa*value+bb;
+                if(util<0)
+                    util=0;
+                if(util>1)
+                    util=1;
+                return util;
 
             }
         }
-        return 0;
+        return 1;
 
     }
 
     @Override
     public double max() {
-        return 4000;
+        return 1;
     }
 
     @Override
@@ -93,6 +75,6 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
     @NotNull
     @Override
     public FitnessOrientation orientation() {
-        return FitnessOrientation.MINIMIZE;
+        return FitnessOrientation.MAXIMIZE;
     }
 }

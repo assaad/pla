@@ -18,6 +18,7 @@ public class DomainConfiguration {
     protected static DefaultPlaFactory factory = new DefaultPlaFactory();
     protected static Domain domain;
     protected static Random random=new Random();
+    protected static double tolerated = 0.35;
 
 
 
@@ -165,7 +166,6 @@ public class DomainConfiguration {
                         b.setParamMax(Double.parseDouble((next.getDictionary().findValuesByID("max").getValue())));
                         b.setParamValue(Double.parseDouble((next.getDictionary().findValuesByID("value").getValue())));
                         b.setIsDouble(next.getDictionary().findValuesByID("isDouble").getValue().toString().equals("true"));
-                        b.setExecTime(Integer.decode(next.getDictionary().findValuesByID("execTime").getValue()));
                         chain.addBlurringList(b);
                         break;
 

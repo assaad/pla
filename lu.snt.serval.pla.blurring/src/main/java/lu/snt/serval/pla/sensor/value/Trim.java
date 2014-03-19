@@ -16,6 +16,6 @@ public abstract class Trim extends ValueBlurring {
         min=1;
         max=6;
         isDouble=false;
-        execTime =5000;
+
     }
 }
