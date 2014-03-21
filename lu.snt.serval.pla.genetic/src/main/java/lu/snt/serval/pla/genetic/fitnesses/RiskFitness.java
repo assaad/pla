@@ -33,15 +33,15 @@ public class RiskFitness  extends DomainConfiguration implements FitnessFunction
         double risk= RiskCalculation.calculateRisk(test);
         if(risk<0.0)
         {
-            System.out.println("Error inside fitness");
+            System.out.println("Error inside fitness 1");
         };
         if(risk>1)
         {
-            System.out.println("Error inside fitness");
+            System.out.println("Error inside fitness 2");
             risk=1;
         };
 
-       risk= 1-Math.exp(-(risk-tolerated)*(risk-tolerated)/0.005);
+       risk= 1-Math.exp(-(risk-tolerated)*(risk-tolerated)/0.03);
 
         return risk;
     }

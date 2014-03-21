@@ -105,6 +105,8 @@ public class RiskCalculation extends DomainConfiguration {
                minRisk = Math.min(minRisk,current);
             }
         }
+        if(minRisk<0)
+            minRisk=0.0;
         return minRisk;
     }
 
@@ -127,6 +129,7 @@ public class RiskCalculation extends DomainConfiguration {
             finalrisk += risk.getWeight()*calculateRisk(risk, blrList);
         }
         finalrisk = finalrisk/totalWeight;
+
         return finalrisk;
 
 
@@ -140,6 +143,8 @@ public class RiskCalculation extends DomainConfiguration {
         {
             try {
                 risk+= calculateRiskOnSensor(c.getSensor().getId(),c.getBlurringList());
+                if(risk<0)
+                    throw new Exception("Risk is negatif! for sensor "+ c.getSensor().getId());
             }
             catch (Exception ex){
                 System.out.println(ex.getMessage());

@@ -302,6 +302,10 @@ public class SampleRunner {
 
     public static void main(String[] args) throws Exception {
         DomainConfiguration.setDomain(SampleRunner.init());
+
+
+        for(int i=0; i<100; i++)
+        {
         GeneticEngine<ContainerRoot> engine = new GeneticEngine<ContainerRoot>();
         engine.addOperator(new AddBlurMutator());
         engine.addOperator(new ChangeBlurSettingMutator());
@@ -313,11 +317,11 @@ public class SampleRunner {
         engine.addFitnessFuntion(new UtilFitness());
         engine.addFitnessFuntion(new RiskFitness());
         engine.addFitnessFuntion(new ExecutionTime());
-        engine.setMaxGeneration(1000)  ;
-        engine.setPopulationFactory(new DefaultPopulation().setSize(50));
+        engine.setMaxGeneration(2000)  ;
+        engine.setPopulationFactory(new DefaultPopulation().setSize(20));
 
         //engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
-        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MIN);
+        /*engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MIN);
         engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MAX);
         engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MEAN);
 
@@ -327,16 +331,19 @@ public class SampleRunner {
 
         engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MIN);
         engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MAX);
-        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
+        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);*/
         //engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
 
-
+        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.BEST);
+        engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.BEST);
+        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.BEST);
         engine.addParetoMetric(ParetoMetrics.HYPERVOLUME);
 
         long startTime = System.nanoTime();
         List<Solution<ContainerRoot>> result = engine.solve();
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
+
 
         for (Solution sol : result) {
             Set af  = sol.getFitnesses();
@@ -351,8 +358,9 @@ public class SampleRunner {
         System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
 
         ExecutionModel model = engine.getExecutionModel();
-        Server.instance$.serveExecutionModel(model);
         ExecutionModelExporter.instance$.exportMetrics(model,new File("results"));
+        }
+
 
 
 

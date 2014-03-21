@@ -50,10 +50,6 @@ public class UtilFitness extends DomainConfiguration implements FitnessFunction<
                 double aa= (b.getUtilMax()-b.getUtilMin())/(b.getParamMax()-b.getParamMin());
                 double bb= b.getUtilMax()-aa*b.getParamMax();
                 double util = aa*value+bb;
-                if(util<0)
-                    util=0;
-                if(util>1)
-                    util=1;
                 return util;
 
             }

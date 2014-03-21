@@ -82,7 +82,7 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
 
     @Override
     public double max() {
-        return 4000;
+        return 1500;
     }
 
     @Override
