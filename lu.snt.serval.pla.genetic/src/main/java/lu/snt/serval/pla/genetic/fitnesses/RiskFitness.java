@@ -45,17 +45,5 @@ public class RiskFitness  extends DomainConfiguration implements FitnessFunction
 
         return risk;
     }
-    @Override
-    public double min() {
 
-        return 0.0;
-    }
-    public double max() {
-
-        return 1;
-    }
-    public FitnessOrientation orientation() {
-
-        return FitnessOrientation.MINIMIZE;
-    }
 }

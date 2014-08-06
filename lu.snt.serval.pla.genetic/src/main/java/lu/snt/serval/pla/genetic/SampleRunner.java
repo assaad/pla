@@ -18,6 +18,7 @@ import lu.snt.serval.pla.genetic.mutators.DeleteBlurMutator;
 import lu.snt.serval.pla.impl.DefaultPlaFactory;
 import org.kevoree.ContainerRoot;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
+import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
 import org.kevoree.modeling.optimization.api.metric.ParetoFitnessMetrics;
 import org.kevoree.modeling.optimization.api.metric.ParetoMetrics;
 import org.kevoree.modeling.optimization.api.solution.Solution;
@@ -314,9 +315,9 @@ public class SampleRunner {
         engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
 
 
-        engine.addFitnessFuntion(new UtilFitness());
-        engine.addFitnessFuntion(new RiskFitness());
-        engine.addFitnessFuntion(new ExecutionTime());
+        engine.addFitnessFunction(new UtilFitness(),0.0,1.0,FitnessOrientation.MAXIMIZE);
+        engine.addFitnessFunction(new RiskFitness(),0.0,1.0, FitnessOrientation.MINIMIZE);
+        engine.addFitnessFunction(new ExecutionTime(), 0.0, 1500, FitnessOrientation.MINIMIZE);
         engine.setMaxGeneration(2000)  ;
         engine.setPopulationFactory(new DefaultPopulation().setSize(20));
 

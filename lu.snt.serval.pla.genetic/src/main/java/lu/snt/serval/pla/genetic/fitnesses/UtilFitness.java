@@ -58,19 +58,5 @@ public class UtilFitness extends DomainConfiguration implements FitnessFunction<
 
     }
 
-    @Override
-    public double max() {
-        return 1;
-    }
 
-    @Override
-    public double min() {
-        return 0;
-    }
-
-    @NotNull
-    @Override
-    public FitnessOrientation orientation() {
-        return FitnessOrientation.MAXIMIZE;
-    }
 }

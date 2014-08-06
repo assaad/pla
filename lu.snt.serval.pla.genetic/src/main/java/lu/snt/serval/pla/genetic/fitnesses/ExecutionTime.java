@@ -46,9 +46,9 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
                 localmax=cur;
         }
 
-        if(localmax>max())
+        if(localmax>1500)
         {
-            localmax=max();
+            localmax=1500;
         }
         }
         catch (Exception ex)
@@ -70,8 +70,8 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
                 double time = aa*value+bb;
                 if(time<0)
                     time=0;
-                if(time>max())
-                    return max();
+                if(time>1500)
+                    return 1500;
                 return time;
 
             }
@@ -80,19 +80,5 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
 
     }
 
-    @Override
-    public double max() {
-        return 1500;
-    }
 
-    @Override
-    public double min() {
-        return 0;
-    }
-
-    @NotNull
-    @Override
-    public FitnessOrientation orientation() {
-        return FitnessOrientation.MINIMIZE;
-    }
 }
