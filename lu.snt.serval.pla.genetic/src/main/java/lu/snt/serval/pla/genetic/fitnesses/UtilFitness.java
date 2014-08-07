@@ -31,9 +31,14 @@ public class UtilFitness extends DomainConfiguration implements FitnessFunction<
             ArrayList<ComponentInstance> bl = getAttachedBlurComp(model,sensor);
             for(ComponentInstance blur:bl)
             {
-                String name = blur.getTypeDefinition().getName();
-                double value = Double.parseDouble(blur.getDictionary().findValuesByID("value").getValue());
-                cur=cur*getUtil(name, value);
+                    String name = blur.getTypeDefinition().getName();
+                try {
+                    double value = Double.parseDouble(blur.getDictionary().findValuesByID("value").getValue());
+                    cur = cur * getUtil(name, value);
+                }
+                catch (Exception x){
+                    System.out.println(x.getMessage()+" AT: " + name);
+                }
             }
             if(cur<localmax)
                 localmax=cur;
@@ -49,6 +54,7 @@ public class UtilFitness extends DomainConfiguration implements FitnessFunction<
                 double aa= (b.getUtilMax()-b.getUtilMin())/(b.getParamMax()-b.getParamMin());
                 double bb= b.getUtilMax()-aa*b.getParamMax();
                 double util = aa*value+bb;
+                System.out.println("Util fitness: "+util);
                 return util;
 
             }

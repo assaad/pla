@@ -9,6 +9,7 @@ repo "http://repo1.maven.org/maven2"
 include mvn:uk.com.robust-it:cloning:1.9.0
 include mvn:org.java-websocket:Java-WebSocket:1.3.0
 include mvn:org.kevoree:org.kevoree.annotation.api:4.0.0
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.blurring:1.0-SNAPSHOT
 include mvn:org.jetbrains.kotlin:kotlin-runtime:0.8.11
 include mvn:org.codehaus.jackson:jackson-core-asl:1.9.13
 include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
@@ -45,10 +46,14 @@ set node0.HeartRate.stepInMin = "5"
 set node0.HeartRate.id = "1"
 set node0.HeartRate.type = "HeartRate"
 add node0.SensorGat63 : SensorGateway/1.0-SNAPSHOT
+add AsyncBroa764 : AsyncBroadcast/4.0.0
+add AsyncBroa217 : AsyncBroadcast/4.0.0
 add AsyncBroa219 : AsyncBroadcast/4.0.0
 add sync : WSGroup/4.0.0
-bind node0.HeartRate.sensorOut AsyncBroa219
-bind node0.Temperature.sensorOut AsyncBroa219
+bind node0.Humidity.sensorOut AsyncBroa764
+bind node0.HeartRate.sensorOut AsyncBroa217
 bind node0.SensorGat63.in AsyncBroa219
-bind node0.Humidity.sensorOut AsyncBroa219
+bind node0.SensorGat63.in AsyncBroa217
+bind node0.SensorGat63.in AsyncBroa764
+bind node0.Temperature.sensorOut AsyncBroa219
 attach node0 sync

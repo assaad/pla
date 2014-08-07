@@ -81,8 +81,8 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
                 else
                     command = "set node0."+compName+".isDouble = \"false\"";
                 engine.execute(command,model);
-                command = "set node0."+compName+".started = \"true\"";
-                engine.execute(command,model);
+                //command = "set node0."+compName+".started = \"true\"";
+               // engine.execute(command,model);
 
                 Channel channel = sensor.getRequired().get(0).getBindings().get(0).getHub();
                 ComponentInstance next=sensor;
@@ -107,8 +107,8 @@ public class AddBlurMutator extends DomainConfiguration implements MutationOpera
 
                 command = "add "+channel1 +" : " +"AsyncBroadcast";
                 engine.execute(command,model);
-                command = "set "+channel1 +".started = \"true\"";
-                engine.execute(command,model);
+               // command = "set "+channel1 +".started = \"true\"";
+               // engine.execute(command,model);
 
                 command = "bind node0."+ compName+".blurringOut "  +channel1;
                 engine.execute(command,model);

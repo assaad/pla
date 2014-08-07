@@ -36,6 +36,7 @@ public class DefaultPopulation extends DomainConfiguration implements Population
         try {
             engine.executeFromStream(DefaultPopulation.class.getClassLoader().getResourceAsStream("kevInit.kevs"), root);
             populations.add(root);
+            System.out.println("InitialPopulation reading kev done");
         } catch (Exception e) {
             e.printStackTrace();
         }

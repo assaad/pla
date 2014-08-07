@@ -67,6 +67,8 @@ public class ExecutionTime extends DomainConfiguration implements FitnessFunctio
                 double aa= (b.getExecTimeMax()-b.getExecTimeMin())/(b.getParamMax()-b.getParamMin());
                 double bb= b.getExecTimeMax()-aa*b.getParamMax();
                 double time = aa*value+bb;
+
+                System.out.println("Time fitness: "+time);
                 if(time<0)
                     time=0;
                 if(time>1500)
