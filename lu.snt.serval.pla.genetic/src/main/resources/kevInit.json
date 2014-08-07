@@ -1,4 +1,3 @@
-
 {"eClass":"org.kevoree.ContainerRoot","generated_KMF_ID":"12593598541392653888829","nodes":[
 {"eClass":"org.kevoree.ContainerNode","name":"node0","started":"true","metaData":"x=138,y=112","typeDefinition":["typeDefinitions[JavaNode/3.4.0]"],"hosts":[],"host":[],"groups":[],"dictionary":[],"fragmentDictionary":[],"components":[
 {"eClass":"org.kevoree.ComponentInstance","name":"HeartRate","started":"true","metaData":"","typeDefinition":["typeDefinitions[Sensor/1.0-SNAPSHOT]"],"namespace":[],"dictionary":[

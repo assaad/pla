@@ -1,6 +1,6 @@
 
 class pla.Domain  {
-    name : String
+    name : java.lang.String
     @contained
     sensors : pla.SensorKind[0,*]
     @contained
@@ -11,17 +11,35 @@ class pla.Domain  {
 
 class pla.SensorKind  {
     @id
-    id : String
-    type : String
+    id : java.lang.String
+    type : java.lang.String
     @contained
     risks : pla.Risk[0,*] oppositeOf sensors
+}
+
+class pla.Blurring  {
+    name : java.lang.String
+    paramName : java.lang.String
+    paramValue : java.lang.Double
+    paramMin : java.lang.Double
+    paramMax : java.lang.Double
+    isDouble : java.lang.Boolean
+    execTimeMin : Integer
+    execTimeMax : Integer
+    utilMin : java.lang.Double
+    utilMax : java.lang.Double
+}
+
+class pla.Architecture  {
+    @contained
+    chains : pla.Chain[0,*]
 }
 
 class pla.Risk  {
     @id
     id : String
     description : String
-    weight : Int
+    weight : Integer
     sensors : pla.SensorKind[0,*] oppositeOf risks
     @contained
     counterMeasures : pla.CounterMeasure[0,*] oppositeOf risk
@@ -37,19 +55,6 @@ class pla.CounterMeasure  {
     setting : pla.RiskReductionProfile
 }
 
-class pla.Blurring  {
-    name : String
-    paramName : String
-    paramValue : Double
-    paramMin : Double
-    paramMax : Double
-    isDouble : Bool
-    execTimeMin : Int
-    execTimeMax : Int
-    utilMin : Double
-    utilMax : Double
-}
-
 class pla.RiskReductionProfile  {
     paramName : String
     paramValue0 : Double
@@ -62,9 +67,4 @@ class pla.RiskReductionProfile  {
 class pla.Chain  {
     sensor : pla.SensorKind
     blurringList : pla.Blurring[0,*]
-}
-
-class pla.Architecture  {
-    @contained
-    chains : pla.Chain[0,*]
 }

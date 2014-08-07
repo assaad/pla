@@ -7,7 +7,7 @@ package lu.snt.serval.pla.genetic;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-import pla.*;
+
 import lu.snt.serval.pla.genetic.fitnesses.ExecutionTime;
 import lu.snt.serval.pla.genetic.fitnesses.RiskFitness;
 import lu.snt.serval.pla.genetic.fitnesses.UtilFitness;
@@ -24,6 +24,7 @@ import org.kevoree.modeling.optimization.engine.genetic.GeneticAlgorithm;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticEngine;
 import org.kevoree.modeling.optimization.executionmodel.ExecutionModel;
 import org.kevoree.modeling.optimization.util.ExecutionModelExporter;
+import pla.*;
 import plamodel.factory.DefaultPlamodelFactory;
 import plamodel.factory.PlamodelFactory;
 
@@ -41,8 +42,7 @@ import java.util.Set;
 public class SampleRunner {
 
 
-    public static Domain init()
-    {
+    public static Domain init() {
         PlamodelFactory factory = new DefaultPlamodelFactory();
         Domain domain;
 
@@ -64,7 +64,7 @@ public class SampleRunner {
         blrTrim.setUtilMax(1.0);
         domain.addBlurrings(blrTrim);
 
-        Blurring blrThresholdLower= factory.createBlurring();
+        Blurring blrThresholdLower = factory.createBlurring();
         blrThresholdLower.setName("CompThresholdLower");
         blrThresholdLower.setIsDouble(true);
         blrThresholdLower.setParamMin(0.0);
@@ -77,7 +77,7 @@ public class SampleRunner {
         blrThresholdLower.setUtilMax(1.0);
         domain.addBlurrings(blrThresholdLower);
 
-        Blurring blrThresholdGreater= factory.createBlurring();
+        Blurring blrThresholdGreater = factory.createBlurring();
         blrThresholdGreater.setName("CompThresholdGreater");
         blrThresholdGreater.setIsDouble(true);
         blrThresholdGreater.setParamMin(0.0);
@@ -90,7 +90,7 @@ public class SampleRunner {
         blrThresholdGreater.setUtilMax(0.3);
         domain.addBlurrings(blrThresholdGreater);
 
-        Blurring blrThresholdNoise= factory.createBlurring();
+        Blurring blrThresholdNoise = factory.createBlurring();
         blrThresholdNoise.setName("CompThresholdNoise");
         blrThresholdNoise.setIsDouble(true);
         blrThresholdNoise.setParamMin(0.0);
@@ -103,7 +103,7 @@ public class SampleRunner {
         blrThresholdNoise.setUtilMax(0.4);
         domain.addBlurrings(blrThresholdNoise);
 
-        Blurring blrFreqReducer= factory.createBlurring();
+        Blurring blrFreqReducer = factory.createBlurring();
         blrFreqReducer.setName("CompFreqReducer");
         blrFreqReducer.setIsDouble(false);
         blrFreqReducer.setParamMin(1.0);
@@ -116,7 +116,7 @@ public class SampleRunner {
         blrFreqReducer.setUtilMax(0.2);
         domain.addBlurrings(blrFreqReducer);
 
-        Blurring blrAveraging= factory.createBlurring();
+        Blurring blrAveraging = factory.createBlurring();
         blrAveraging.setName("CompAveraging");
         blrAveraging.setIsDouble(false);
         blrAveraging.setParamMin(1.0);
@@ -149,19 +149,19 @@ public class SampleRunner {
         domain.addSensors(sensorC);
 
         //Setup 3 risks on Sensor A
-        Risk risk0=factory.createRisk();
+        Risk risk0 = factory.createRisk();
         risk0.setId("risk0");
         risk0.setDescription("Risk 0");
         risk0.setWeight(1);
         sensorA.addRisks(risk0);
 
-        Risk risk1=factory.createRisk();
+        Risk risk1 = factory.createRisk();
         risk1.setId("risk1");
         risk1.setDescription("Risk 1");
         risk1.setWeight(1);
         sensorB.addRisks(risk1);
 
-        Risk risk2=factory.createRisk();
+        Risk risk2 = factory.createRisk();
         risk2.setId("risk2");
         risk2.setDescription("Risk 2");
         risk2.setWeight(1);
@@ -172,7 +172,7 @@ public class SampleRunner {
         cm00.setId("CM00");
         cm00.setDescription("Counter Measure 0 for risk 0");
         cm00.setBlurring(blrTrim);
-        RiskReductionProfile setting00= factory.createRiskReductionProfile();
+        RiskReductionProfile setting00 = factory.createRiskReductionProfile();
         setting00.setParamName("digit");
         setting00.setParamValue0(3.0);
         setting00.setImpact0(1.0);
@@ -186,7 +186,7 @@ public class SampleRunner {
         cm01.setId("CM01");
         cm01.setDescription("Counter Measure 1 for risk 0");
         cm01.setBlurring(blrThresholdLower);
-        RiskReductionProfile setting01= factory.createRiskReductionProfile();
+        RiskReductionProfile setting01 = factory.createRiskReductionProfile();
         setting01.setParamName("threshold");
         setting01.setParamValue0(44.0);
         setting01.setImpact0(1.0);
@@ -200,7 +200,7 @@ public class SampleRunner {
         cm02.setId("CM02");
         cm02.setDescription("Counter Measure 2 for risk 0");
         cm02.setBlurring(blrAveraging);
-        RiskReductionProfile setting02= factory.createRiskReductionProfile();
+        RiskReductionProfile setting02 = factory.createRiskReductionProfile();
         setting02.setParamName("timewindow");
         setting02.setParamValue0(5000.0);
         setting02.setImpact0(1.0);
@@ -215,7 +215,7 @@ public class SampleRunner {
         cm10.setId("CM10");
         cm10.setDescription("Counter Measure 0 for risk 1");
         cm10.setBlurring(blrTrim);
-        RiskReductionProfile setting10= factory.createRiskReductionProfile();
+        RiskReductionProfile setting10 = factory.createRiskReductionProfile();
         setting10.setParamName("digit");
         setting10.setParamValue0(2.0);
         setting10.setImpact0(1.0);
@@ -229,7 +229,7 @@ public class SampleRunner {
         cm11.setId("CM11");
         cm11.setDescription("Counter Measure 1 for risk 1");
         cm11.setBlurring(blrThresholdLower);
-        RiskReductionProfile setting11= factory.createRiskReductionProfile();
+        RiskReductionProfile setting11 = factory.createRiskReductionProfile();
         setting11.setParamName("threshold");
         setting11.setParamValue0(55.0);
         setting11.setImpact0(1.0);
@@ -243,7 +243,7 @@ public class SampleRunner {
         cm12.setId("CM12");
         cm12.setDescription("Counter Measure 2 for risk 1");
         cm12.setBlurring(blrAveraging);
-        RiskReductionProfile setting12= factory.createRiskReductionProfile();
+        RiskReductionProfile setting12 = factory.createRiskReductionProfile();
         setting12.setParamName("timewindow");
         setting12.setParamValue0(10000.0);
         setting12.setImpact0(1.0);
@@ -258,7 +258,7 @@ public class SampleRunner {
         cm20.setId("CM20");
         cm20.setDescription("Counter Measure 0 for risk 2");
         cm20.setBlurring(blrTrim);
-        RiskReductionProfile setting20= factory.createRiskReductionProfile();
+        RiskReductionProfile setting20 = factory.createRiskReductionProfile();
         setting20.setParamName("digit");
         setting20.setParamValue0(3.0);
         setting20.setImpact0(1.0);
@@ -272,7 +272,7 @@ public class SampleRunner {
         cm21.setId("CM21");
         cm21.setDescription("Counter Measure 1 for risk 2");
         cm21.setBlurring(blrThresholdLower);
-        RiskReductionProfile setting21= factory.createRiskReductionProfile();
+        RiskReductionProfile setting21 = factory.createRiskReductionProfile();
         setting21.setParamName("threshold");
         setting21.setParamValue0(40.0);
         setting21.setImpact0(1.0);
@@ -286,7 +286,7 @@ public class SampleRunner {
         cm22.setId("CM22");
         cm22.setDescription("Counter Measure 2 for risk 2");
         cm22.setBlurring(blrAveraging);
-        RiskReductionProfile setting22= factory.createRiskReductionProfile();
+        RiskReductionProfile setting22 = factory.createRiskReductionProfile();
         setting22.setParamName("timewindow");
         setting22.setParamValue0(20000.0);
         setting22.setImpact0(1.0);
@@ -299,28 +299,26 @@ public class SampleRunner {
     }
 
 
-
     public static void main(String[] args) throws Exception {
         DomainConfiguration.setDomain(SampleRunner.init());
 
 
-        for(int i=0; i<100; i++)
-        {
-        GeneticEngine<ContainerRoot> engine = new GeneticEngine<ContainerRoot>();
-        engine.addOperator(new AddBlurMutator());
-        engine.addOperator(new ChangeBlurSettingMutator());
-        engine.addOperator(new DeleteBlurMutator());
+        for (int i = 0; i < 100; i++) {
+            GeneticEngine<ContainerRoot> engine = new GeneticEngine<ContainerRoot>();
+            engine.addOperator(new AddBlurMutator());
+            engine.addOperator(new ChangeBlurSettingMutator());
+            engine.addOperator(new DeleteBlurMutator());
 
-        engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
+            engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
 
 
-        engine.addFitnessFunction(new UtilFitness(),0.0,1.0,FitnessOrientation.MAXIMIZE);
-        engine.addFitnessFunction(new RiskFitness(),0.0,1.0, FitnessOrientation.MINIMIZE);
-        engine.addFitnessFunction(new ExecutionTime(), 0.0, 1500, FitnessOrientation.MINIMIZE);
-        engine.setMaxGeneration(2000)  ;
-        engine.setPopulationFactory(new DefaultPopulation().setSize(20));
+            engine.addFitnessFunction(new UtilFitness(), 0.0, 1.0, FitnessOrientation.MAXIMIZE);
+            engine.addFitnessFunction(new RiskFitness(), 0.0, 1.0, FitnessOrientation.MINIMIZE);
+            engine.addFitnessFunction(new ExecutionTime(), 0.0, 1500, FitnessOrientation.MINIMIZE);
+            engine.setMaxGeneration(2000);
+            engine.setPopulationFactory(new DefaultPopulation().setSize(20));
 
-        //engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
+            //engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
         /*engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MIN);
         engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MAX);
         engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MEAN);
@@ -332,40 +330,38 @@ public class SampleRunner {
         engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MIN);
         engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MAX);
         engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);*/
-        //engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
-
-        engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.BEST);
-        engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.BEST);
-        engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.BEST);
-        engine.addParetoMetric(ParetoMetrics.HYPERVOLUME);
-
-        long startTime = System.nanoTime();
-        List<Solution<ContainerRoot>> result = engine.solve();
-        long endTime = System.nanoTime();
-        long duration = endTime - startTime;
+            //engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.MEAN);
 
 
-        for (Solution sol : result) {
-            Set af  = sol.getFitnesses();
-            Iterator iter = af.iterator();
-            while (iter.hasNext())
-            {
-                FitnessFunction tf= (FitnessFunction) iter.next();
-                System.out.print(tf.getClass().getName()+" "+ sol.getScoreForFitness(tf)+" ");
+            engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.BEST);
+            engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.BEST);
+            engine.addFitnessMetric(new ExecutionTime(), ParetoFitnessMetrics.BEST);
+            engine.addParetoMetric(ParetoMetrics.HYPERVOLUME);
+
+
+            long startTime = System.nanoTime();
+            List<Solution<ContainerRoot>> result = engine.solve();
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+
+            for (Solution sol : result) {
+                Set af = sol.getFitnesses();
+                Iterator iter = af.iterator();
+                while (iter.hasNext()) {
+                    FitnessFunction tf = (FitnessFunction) iter.next();
+                    System.out.print(tf.getClass().getName() + " " + sol.getScoreForFitness(tf) + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+            System.out.println("Duration: " + (double) duration / 1000000000.0 + " seconds");
+
+            ExecutionModel model = engine.getExecutionModel();
+            ExecutionModelExporter.instance$.exportMetrics(model, new File("results"));
         }
-        System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
-
-        ExecutionModel model = engine.getExecutionModel();
-        ExecutionModelExporter.instance$.exportMetrics(model,new File("results"));
-        }
-
-
 
 
     }
-
 
 
 }

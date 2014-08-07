@@ -20,7 +20,7 @@
     </modules>
 
     <properties>
-        <kmf.version>3.1.1</kmf.version>
+        <kmf.version>3.2.0</kmf.version>
         <kevoree.version>4.0.0</kevoree.version>
         <kmf.genetic.version>2.0.0-SNAPSHOT</kmf.genetic.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
