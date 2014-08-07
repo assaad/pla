@@ -26,34 +26,27 @@ include mvn:org.kevoree:org.kevoree.api:4.0.0
 include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:3.1.1
 include mvn:org.kevoree.log:org.kevoree.log:1
 add node0 : JavaNode/4.0.0
-set node0.started = "true"
 add node0.Temperature : Sensor/1.0-SNAPSHOT
 set node0.Temperature.startDay = "5"
 set node0.Temperature.periodInMs = "2000"
 set node0.Temperature.stepInMin = "5"
 set node0.Temperature.id = "1"
 set node0.Temperature.type = "Temperature"
-set node0.Temperature.started = "true"
 add node0.Humidity : Sensor/1.0-SNAPSHOT
 set node0.Humidity.startDay = "5"
 set node0.Humidity.periodInMs = "2000"
 set node0.Humidity.stepInMin = "5"
 set node0.Humidity.id = "1"
 set node0.Humidity.type = "Humidity"
-set node0.Humidity.started = "true"
 add node0.HeartRate : Sensor/1.0-SNAPSHOT
 set node0.HeartRate.startDay = "5"
 set node0.HeartRate.periodInMs = "2000"
 set node0.HeartRate.stepInMin = "5"
 set node0.HeartRate.id = "1"
 set node0.HeartRate.type = "HeartRate"
-set node0.HeartRate.started = "true"
 add node0.SensorGat63 : SensorGateway/1.0-SNAPSHOT
-set node0.SensorGat63.started = "true"
 add AsyncBroa219 : AsyncBroadcast/4.0.0
-set AsyncBroa219.started = "true"
 add sync : WSGroup/4.0.0
-set sync.started = "true"
 bind node0.HeartRate.sensorOut AsyncBroa219
 bind node0.Temperature.sensorOut AsyncBroa219
 bind node0.SensorGat63.in AsyncBroa219

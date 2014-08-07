@@ -2,9 +2,9 @@ package lu.snt.serval.pla.genetic;
 
 import org.kevoree.ContainerRoot;
 import org.kevoree.factory.DefaultKevoreeFactory;
+import org.kevoree.kevscript.KevScriptEngine;
 import org.kevoree.modeling.api.ModelCloner;
 import org.kevoree.modeling.api.compare.ModelCompare;
-import org.kevoree.modeling.api.json.JSONModelLoader;
 import org.kevoree.modeling.optimization.api.PopulationFactory;
 
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ import java.util.List;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-public class DefaultPopulation extends DomainConfiguration  implements PopulationFactory<ContainerRoot> {
+public class DefaultPopulation extends DomainConfiguration implements PopulationFactory<ContainerRoot> {
 
 
-    private Integer size=4;
-    public static int MAX=12;
+    private Integer size = 4;
+    public static int MAX = 12;
 
     public DefaultPopulation setSize(Integer nSize) {
         size = nSize;
@@ -30,13 +30,19 @@ public class DefaultPopulation extends DomainConfiguration  implements Populatio
 
     @Override
     public List<ContainerRoot> createPopulation() {
-        ArrayList<ContainerRoot> populations =  new ArrayList<ContainerRoot>();
+        ArrayList<ContainerRoot> populations = new ArrayList<ContainerRoot>();
         ContainerRoot cr;
 
         for (int i = 0; i < size; i++) {
-            JSONModelLoader loader = new JSONModelLoader(new DefaultKevoreeFactory());
-            cr= (ContainerRoot) loader.loadModelFromStream(DefaultPopulation.class.getClassLoader().getResourceAsStream("kevInit.json")).get(0);
-            populations.add(cr);
+            KevScriptEngine engine = new KevScriptEngine();
+            ContainerRoot root = new DefaultKevoreeFactory().createContainerRoot();
+            try {
+                engine.executeFromStream(DefaultPopulation.class.getClassLoader().getResourceAsStream("kevInit.kevs"), root);
+                populations.add(root);
+                System.out.println("InitialPopulation added");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return populations;
     }
