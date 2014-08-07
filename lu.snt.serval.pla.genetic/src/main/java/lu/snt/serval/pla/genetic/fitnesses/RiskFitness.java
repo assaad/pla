@@ -8,21 +8,12 @@ package lu.snt.serval.pla.genetic.fitnesses;
  * assaad.mouawad@gmail.com
  */
 
-import lu.snt.serval.pla.Architecture;
-import lu.snt.serval.pla.Blurring;
 import lu.snt.serval.pla.genetic.DomainConfiguration;
 import lu.snt.serval.pla.genetic.RiskCalculation;
-import lu.snt.serval.pla.genetic.SampleRunner;
 import org.kevoree.*;
-import org.kevoree.kevscript.KevScriptEngine;
-import org.kevoree.loader.JSONModelLoader;
-import org.kevoree.log.Log;
 import org.kevoree.modeling.optimization.api.GenerationContext;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
-import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
-
-import java.util.ArrayList;
-
+import pla.Architecture;
 
 public class RiskFitness  extends DomainConfiguration implements FitnessFunction<ContainerRoot> {
 

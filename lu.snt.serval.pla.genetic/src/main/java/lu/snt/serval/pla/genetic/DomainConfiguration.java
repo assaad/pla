@@ -1,8 +1,9 @@
 package lu.snt.serval.pla.genetic;
 
-import lu.snt.serval.pla.*;
-import lu.snt.serval.pla.impl.DefaultPlaFactory;
 import org.kevoree.*;
+import pla.*;
+import plamodel.factory.DefaultPlamodelFactory;
+import plamodel.factory.PlamodelFactory;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,13 +16,10 @@ import java.util.Random;
  * assaad.mouawad@gmail.com
  */
 public class DomainConfiguration {
-    protected static DefaultPlaFactory factory = new DefaultPlaFactory();
+    protected static PlamodelFactory factory = new DefaultPlamodelFactory();
     protected static Domain domain;
     protected static Random random=new Random();
     protected static double tolerated = 0.35;
-
-
-
 
     public static ArrayList<Blurring> getPossibleBlur(String sensorID)
     {

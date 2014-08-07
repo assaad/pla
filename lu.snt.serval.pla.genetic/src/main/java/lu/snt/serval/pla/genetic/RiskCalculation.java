@@ -1,6 +1,6 @@
 package lu.snt.serval.pla.genetic;
 
-import lu.snt.serval.pla.*;
+import pla.*;
 
 import java.util.Iterator;
 import java.util.List;

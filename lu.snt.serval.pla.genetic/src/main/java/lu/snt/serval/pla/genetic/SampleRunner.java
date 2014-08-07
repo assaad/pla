@@ -7,15 +7,13 @@ package lu.snt.serval.pla.genetic;
  * University of Luxembourg - Snt
  * assaad.mouawad@gmail.com
  */
-import kotlin._Assertions;
-import lu.snt.serval.pla.*;
+import pla.*;
 import lu.snt.serval.pla.genetic.fitnesses.ExecutionTime;
 import lu.snt.serval.pla.genetic.fitnesses.RiskFitness;
 import lu.snt.serval.pla.genetic.fitnesses.UtilFitness;
 import lu.snt.serval.pla.genetic.mutators.AddBlurMutator;
 import lu.snt.serval.pla.genetic.mutators.ChangeBlurSettingMutator;
 import lu.snt.serval.pla.genetic.mutators.DeleteBlurMutator;
-import lu.snt.serval.pla.impl.DefaultPlaFactory;
 import org.kevoree.ContainerRoot;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
 import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
@@ -26,7 +24,8 @@ import org.kevoree.modeling.optimization.engine.genetic.GeneticAlgorithm;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticEngine;
 import org.kevoree.modeling.optimization.executionmodel.ExecutionModel;
 import org.kevoree.modeling.optimization.util.ExecutionModelExporter;
-import org.kevoree.modeling.optimization.web.Server;
+import plamodel.factory.DefaultPlamodelFactory;
+import plamodel.factory.PlamodelFactory;
 
 import java.io.File;
 import java.util.Iterator;
@@ -44,7 +43,7 @@ public class SampleRunner {
 
     public static Domain init()
     {
-        DefaultPlaFactory factory = new DefaultPlaFactory();
+        PlamodelFactory factory = new DefaultPlamodelFactory();
         Domain domain;
 
         domain = factory.createDomain();

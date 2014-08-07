@@ -1,14 +1,13 @@
 package lu.snt.serval.pla.genetic.fitnesses;
 
 import jet.runtime.typeinfo.JetValueParameter;
-import lu.snt.serval.pla.Blurring;
 import lu.snt.serval.pla.genetic.DomainConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.kevoree.ComponentInstance;
 import org.kevoree.ContainerRoot;
 import org.kevoree.modeling.optimization.api.GenerationContext;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
-import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
+import pla.Blurring;
 
 import java.util.ArrayList;
 

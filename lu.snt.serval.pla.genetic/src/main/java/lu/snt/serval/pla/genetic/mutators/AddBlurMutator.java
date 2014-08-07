@@ -1,7 +1,6 @@
 package lu.snt.serval.pla.genetic.mutators;
 
 import jet.runtime.typeinfo.JetValueParameter;
-import lu.snt.serval.pla.Blurring;
 import lu.snt.serval.pla.genetic.DomainConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.kevoree.*;
@@ -11,6 +10,7 @@ import org.kevoree.modeling.optimization.api.mutation.MutationOperator;
 import org.kevoree.modeling.optimization.api.mutation.MutationParameters;
 import org.kevoree.modeling.optimization.api.mutation.MutationVariable;
 import org.kevoree.modeling.optimization.api.mutation.QueryVar;
+import pla.Blurring;
 
 import java.util.ArrayList;
 import java.util.Arrays;
