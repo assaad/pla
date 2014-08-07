@@ -31,19 +31,18 @@ public class DefaultPopulation extends DomainConfiguration implements Population
     @Override
     public List<ContainerRoot> createPopulation() {
         ArrayList<ContainerRoot> populations = new ArrayList<ContainerRoot>();
-        ContainerRoot cr;
-
-        for (int i = 0; i < size; i++) {
-            KevScriptEngine engine = new KevScriptEngine();
-            ContainerRoot root = new DefaultKevoreeFactory().createContainerRoot();
-            try {
-                engine.executeFromStream(DefaultPopulation.class.getClassLoader().getResourceAsStream("kevInit.kevs"), root);
-                populations.add(root);
-                System.out.println("InitialPopulation added");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        KevScriptEngine engine = new KevScriptEngine();
+        ContainerRoot root = new DefaultKevoreeFactory().createContainerRoot();
+        try {
+            engine.executeFromStream(DefaultPopulation.class.getClassLoader().getResourceAsStream("kevInit.kevs"), root);
+            populations.add(root);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        for (int i = 0; i < size; i++) {
+            populations.add(getCloner().clone(root));
+        }
+        System.out.println("InitialPopulation done");
         return populations;
     }
 
