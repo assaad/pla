@@ -49,9 +49,9 @@ set node0.HeartRate.id = "1"
 set node0.HeartRate.type = "HeartRate"
 set node0.HeartRate.started = "true"
 add node0.SensorGat63 : SensorGateway/1.0-SNAPSHOT
-set node0.SensorGat63.started = "false"
+set node0.SensorGat63.started = "true"
 add AsyncBroa219 : AsyncBroadcast/4.0.0
-set AsyncBroa219.started = "false"
+set AsyncBroa219.started = "true"
 add sync : WSGroup/4.0.0
 set sync.started = "true"
 bind node0.HeartRate.sensorOut AsyncBroa219
