@@ -32,10 +32,10 @@ public class RiskFitness  extends DomainConfiguration implements FitnessFunction
             risk=1;
         };
 
-       risk= 1-Math.exp(-(risk-tolerated)*(risk-tolerated)/0.03);
+      // risk= 1-Math.exp(-(risk-tolerated)*(risk-tolerated)/0.03);
 
 
-        System.out.println("Risk fitness: "+risk);
+       // System.out.println("Risk fitness: "+risk);
         return risk;
     }
 

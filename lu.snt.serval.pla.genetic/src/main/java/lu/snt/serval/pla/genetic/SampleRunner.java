@@ -312,11 +312,14 @@ public class SampleRunner {
             engine.setAlgorithm(GeneticAlgorithm.EpsilonMOEA);
 
 
-            engine.addGaussianFitnessFunction(new UtilFitness(), 0.0, 1.0, FitnessOrientation.MAXIMIZE,0.2,0.1);
-            engine.addGaussianFitnessFunction(new RiskFitness(), 0.0, 1.0, FitnessOrientation.MINIMIZE,0.6,0.1);
+            double targetRisk = 0.8;
+            double targetUtil = 0.3;
+
+            engine.addGaussianFitnessFunction(new UtilFitness(), 0.0, 1.0, FitnessOrientation.MAXIMIZE,targetUtil,0.2);
+            engine.addGaussianFitnessFunction(new RiskFitness(), 0.0, 1.0, FitnessOrientation.MINIMIZE,targetRisk,0.2);
             engine.addFitnessFunction(new ExecutionTime(), 0.0, 1500, FitnessOrientation.MINIMIZE);
-            engine.setMaxGeneration(20);
-            engine.setPopulationFactory(new DefaultPopulation().setSize(20));
+            engine.setMaxGeneration(100);
+            engine.setPopulationFactory(new DefaultPopulation().setSize(10));
 
             //engine.addFitnessMetric(new UtilFitness(), ParetoFitnessMetrics.MEAN);
         /*engine.addFitnessMetric(new RiskFitness(), ParetoFitnessMetrics.MIN);
@@ -350,7 +353,7 @@ public class SampleRunner {
                 Iterator iter = af.iterator();
                 while (iter.hasNext()) {
                     FitnessFunction tf = (FitnessFunction) iter.next();
-                    System.out.print(tf.getClass().getName() + " " + sol.getRawScoreForFitness(tf) + " ");
+                    System.out.print(tf.getClass().getName().replaceAll("lu.snt.serval.pla.genetic.fitnesses.","") + " " + sol.getRawScoreForFitness(tf) + " ");
                 }
                 System.out.println();
             }

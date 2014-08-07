@@ -110,7 +110,7 @@ public class DomainConfiguration {
                     {
                         break;
                     }
-                    System.out.println("Inside add "+next.getName().toString());
+                    //System.out.println("Inside add "+next.getName().toString());
                     res.add(next);
                     break;
 
