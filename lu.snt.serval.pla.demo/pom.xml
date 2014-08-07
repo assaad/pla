@@ -26,23 +26,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.kevoree.tools</groupId>
-                <artifactId>org.kevoree.tools.mavenplugin</artifactId>
-                <version>${kevoree.version}</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
