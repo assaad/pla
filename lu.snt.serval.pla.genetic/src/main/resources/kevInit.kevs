@@ -1,0 +1,61 @@
+repo "http://maven.kevoree.org/ruleml"
+repo "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+repo "https://oss.sonatype.org/content/groups/public/"
+repo "http://oss.sonatype.org/content/repositories/releases"
+repo "http://oss.sonatype.org/content/repositories/snapshots/"
+repo "https://oss.sonatype.org/content/repositories/snapshots"
+repo "http://repo.maven.apache.org/maven2"
+repo "http://repo1.maven.org/maven2"
+include mvn:uk.com.robust-it:cloning:1.9.0
+include mvn:org.java-websocket:Java-WebSocket:1.3.0
+include mvn:org.kevoree:org.kevoree.annotation.api:4.0.0
+include mvn:org.jetbrains.kotlin:kotlin-runtime:0.8.11
+include mvn:org.codehaus.jackson:jackson-core-asl:1.9.13
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.api:1.0-SNAPSHOT
+include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:4.0.0
+include mvn:org.json:json:20090211
+include mvn:org.jetbrains.kotlin:kotlin-stdlib:0.8.11
+include mvn:lu.snt.serval.pla:lu.snt.serval.pla.sensor:1.0-SNAPSHOT
+include mvn:org.codehaus.jackson:jackson-mapper-asl:1.9.13
+include mvn:org.objenesis:objenesis:1.2
+include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:4.0.0
+include mvn:org.kevoree.library.java:org.kevoree.library.java.channels:4.0.0
+include mvn:org.kevoree:org.kevoree.model:4.0.0
+include mvn:org.kevoree.kcl:org.kevoree.kcl:10
+include mvn:org.kevoree:org.kevoree.api:4.0.0
+include mvn:org.kevoree.modeling:org.kevoree.modeling.microframework:3.1.1
+include mvn:org.kevoree.log:org.kevoree.log:1
+add node0 : JavaNode/4.0.0
+set node0.started = "true"
+add node0.Temperature : Sensor/1.0-SNAPSHOT
+set node0.Temperature.startDay = "5"
+set node0.Temperature.periodInMs = "2000"
+set node0.Temperature.stepInMin = "5"
+set node0.Temperature.id = "1"
+set node0.Temperature.type = "Temperature"
+set node0.Temperature.started = "true"
+add node0.Humidity : Sensor/1.0-SNAPSHOT
+set node0.Humidity.startDay = "5"
+set node0.Humidity.periodInMs = "2000"
+set node0.Humidity.stepInMin = "5"
+set node0.Humidity.id = "1"
+set node0.Humidity.type = "Humidity"
+set node0.Humidity.started = "true"
+add node0.HeartRate : Sensor/1.0-SNAPSHOT
+set node0.HeartRate.startDay = "5"
+set node0.HeartRate.periodInMs = "2000"
+set node0.HeartRate.stepInMin = "5"
+set node0.HeartRate.id = "1"
+set node0.HeartRate.type = "HeartRate"
+set node0.HeartRate.started = "true"
+add node0.SensorGat63 : SensorGateway/1.0-SNAPSHOT
+set node0.SensorGat63.started = "false"
+add AsyncBroa219 : AsyncBroadcast/4.0.0
+set AsyncBroa219.started = "false"
+add sync : WSGroup/4.0.0
+set sync.started = "true"
+bind node0.HeartRate.sensorOut AsyncBroa219
+bind node0.Temperature.sensorOut AsyncBroa219
+bind node0.SensorGat63.in AsyncBroa219
+bind node0.Humidity.sensorOut AsyncBroa219
+attach node0 sync
