@@ -7,7 +7,7 @@ import org.kevoree.annotation.Param;
  * Date: 16/01/14
  * Time: 18:01
  * University of Luxembourg - Snt
- * assaad.moawad@gmail.com
+ * assaadmouawad@gmail.com
  */
 public abstract class Trim extends ValueBlurring {
     Trim(){
